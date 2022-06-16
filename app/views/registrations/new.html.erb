@@ -1,0 +1,54 @@
+<h1>Sign Up</h1>
+  <%= form_with model: @user, url: sign_up_path do |f| %>
+
+    <p>
+    <%= f.label 'Profile_picture' %><br>
+    <%= f.file_field :avatar %>
+    </p>
+
+    <p>
+    <%= f.label 'Name or Company Name' %><br>
+    <%= f.text_field :name_or_company_name %>
+    </p>
+
+    <p>
+    <%= f.label 'email' %><br>
+    <%= f.text_field :email %>
+    </p>
+    
+    <p>
+    <%= f.label 'education' %><br>
+    <%= f.text_field :education %>
+    </p>
+
+    <p>
+    <%= f.label 'experinece' %><br>
+    <%= f.text_field :experience %>
+    </p>
+
+     <p>
+    <%= f.label 'industry' %><br>
+    <%= f.text_field :industry %>
+    </p>
+
+    <p>
+    <%= f.label 'Role' %><br>
+    <%= f.select :role, options_for_select(User.roles.map {|key, value| [key.titleize, User.roles.key(value)]}, @user.role)%>
+    </p>
+
+    <p>
+    <%= f.label 'password' %><br>
+    <%= f.password_field :password %>
+    </p>
+
+    <p>
+    <%= f.label 'password_confirmation' %><br>
+    <%= f.password_field :password_confirmation %>
+    </p>
+
+    
+
+    <p>
+    <%= f.submit 'Sign Up' %>
+    </p>
+  <% end %>

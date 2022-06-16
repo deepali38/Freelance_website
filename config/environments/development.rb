@@ -36,6 +36,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -46,7 +47,7 @@ Rails.application.configure do
 
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
-
+  config.active_storage.service = :test   
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
 

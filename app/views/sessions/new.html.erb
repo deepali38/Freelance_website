@@ -1,15 +1,33 @@
- <h1>Sign In</h1>
-  <%= form_with url: sign_in_path do |f| %>
-    <p>
-    <%= f.label 'email:'%><br>
-    <%= f.text_field :email, id: 'email' %>
-    </p>
-    <p>
-    <%= f.label 'password:'%><br>
-    <%= f.password_field :password, id: 'password' %>
-     <%= link_to 'Forgot your password?', password_reset_path %>
-    </p>
-    <p>
-    <%= f.submit 'Log In' %>
-    </p>
-  <% end %>
+ <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+          <h2 class="title is-2">Sign In</h2>
+            <%= form_with url: sign_in_path do |f| %>
+              <div class="field">
+                <div class="control">
+                  <%= f.label 'email:'%><br>
+                  <%= f.text_field :email, id: 'email' %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.label 'password:'%><br>
+                  <%= f.password_field :password, id: 'password' %>
+                </div>
+              </div>  
+
+              <div class="field">
+                <div class="control">
+                   <%= link_to 'Forgot your password?', password_reset_path %>
+                </div>
+              </div>
+              
+              <%= f.submit 'Log In' , class:"button is-primary is-medium"%>
+              
+            <% end %>
+      </div>
+		</div>
+	</div>
+</section>

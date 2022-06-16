@@ -10,5 +10,14 @@ class User < ApplicationRecord
     def set_default_role
         self.role ||=:user
     end
+    def admin?
+        role=="admin"
+    end
+    def client?
+        role=="client"
+    end
+    def freelance?
+        role=="freelance"
+    end
 end
 

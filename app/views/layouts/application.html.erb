@@ -31,7 +31,7 @@
     </div>
     <% end %>
 
-    <div class="container">
+  <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <span class="fs-4">Freelancer</span>
@@ -46,13 +46,22 @@
         <%=link_to "About", root_path, class:"nav-item nav-link"%>
         </li>
       </ul>
+      
+        <% if Current.user %>
+          <ul class="nav nav-pills">
 
-      <% if Current.user %>
-            <%= Current.user.name_or_company_name%><br>
-            <%= link_to 'Edit Password', edit_password_path %>
-            <%= button_to 'Logout', logout_path, method: :delete, class:"button is-primary"%>
+            <li>
+              <%=link_to Current.user.name_or_company_name,root_path, class:"nav-item nav-link"%><br>
+            </li>
+
+            <li>
+              <%= link_to 'Edit Password', edit_password_path, class:"nav-item nav-link"%>
+            </li>
+          </ul>
+
+          <%= button_to 'Logout', logout_path, method: :delete, class:"button is-primary"%>
           
-            <% else %>
+        <% else %>
             <%=link_to "login", sign_in_path, class: "btn btn-success", type: "button"%>
           
             <%=link_to "Sign-up", sign_up_path, class: "btn btn-warning", type: "button"%>

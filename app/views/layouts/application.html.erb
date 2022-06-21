@@ -14,11 +14,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     
-    <%= stylesheet_link_tag "application", media:"all","data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", media: "all","data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
    <% if flash[:notice] %>
     	<div class="notification is-primary global-notification">
@@ -47,24 +46,29 @@
         </li>
       </ul>
       
-        <% if Current.user %>
+        <% if Current.user && Current.user.admin? %>
+          
           <ul class="nav nav-pills">
-
             <li>
-              <%=link_to Current.user.name_or_company_name,root_path, class:"nav-item nav-link"%><br>
+              <%=link_to Current.user.name_or_company_name,root_path, class:"nav-item nav-link"%>
             </li>
-
             <li>
               <%= link_to 'Edit Password', edit_password_path, class:"nav-item nav-link"%>
             </li>
           </ul>
+            
 
-          <%= button_to 'Logout', logout_path, method: :delete, class:"button is-primary"%>
-          
+              <%= button_to 'Logout', logout_path, method: :delete, class:"btn btn-primary me-2"%>
+            
+         
         <% else %>
-            <%=link_to "login", sign_in_path, class: "btn btn-success", type: "button"%>
-          
-            <%=link_to "Sign-up", sign_up_path, class: "btn btn-warning", type: "button"%>
+          <div class="col-md-3 text-end">
+
+            <%=link_to "login", sign_in_path, class:"btn btn-primary"%>
+            
+            <%=link_to "Sign-up", sign_up_path, class:"btn btn-primary"%>
+            
+          </div>
       <% end %>
     </header>
     </div>

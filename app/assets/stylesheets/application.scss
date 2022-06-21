@@ -13,4 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+$pink: #ea4c89;
+$primary: $pink;
+
 @import "bulma";
+
+
+.button .is-primary{
+    border-color: none;
+    color:black;
+  }
+

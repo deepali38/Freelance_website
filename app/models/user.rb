@@ -8,16 +8,9 @@ class User < ApplicationRecord
     after_initialize( :set_default_role, {if: :new_record?})
 
     def set_default_role
-        self.role ||=:user
+        self.role ||=:freelance
     end
-    def admin?
-        role=="admin"
-    end
-    def client?
-        role=="client"
-    end
-    def freelance?
-        role=="freelance"
-    end
+    
+    has_many :freelancer, dependent: :destroy
 end
 

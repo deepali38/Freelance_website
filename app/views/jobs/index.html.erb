@@ -1,14 +1,35 @@
-<p style="color: green"><%= notice %></p>
+<div class="columns border-top">
 
-<h1>Jobs</h1>
+  <div class="column is-9 pl6">
+    <% @jobs.each do |job| %>
+    <div class="columns border-bottom pt4">
+      <div class="column is-8">
+        <h3 class="title is-4 index-title"><%= link_to job.title, job %></h3>
+          <ul>
+            <li><%= link_to job.job_author %></li>
+          </ul>
+        <div class="pv2 f6">
+          <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
+        </div>
 
-<div id="jobs">
-  <% @jobs.each do |job| %>
-    <%= render job %>
-    <p>
-      <%= link_to "Show this job", job %>
-    </p>
-  <% end %>
+        <% if Current.user.admin? || job_author(job) %>
+          <ul class="pv3">
+            <li class="inline-block f6">Admin controls: </li>
+            <li class="inline-block">
+              <%= link_to 'View', job, class: 'button is-small is-link is-outlined' %></li>
+            <li class="inline-block">
+              <%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %></li>
+            <li class="inline-block">
+              <%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-link is-outlined' %></li>
+          </ul>
+        <% end %>
+
+        </div>
+        <div class="column has-text-right">
+          <p class="pt2 f6"><%= job.location %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
 </div>
-
-<%= link_to "New job", new_job_path %>

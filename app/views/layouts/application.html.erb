@@ -19,15 +19,16 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-   <% if flash[:notice] %>
+    <% if flash[:notice] %>
     	<div class="notification is-primary global-notification">
   	  	<p class="notice"><%= notice %></p>
     	</div>
-   	<% end %>
+    <% end %>
+
     <% if flash[:alert] %>
-    <div class="notification is-danger global-notification">
-      <p class="alert"><%= alert %></p>
-    </div>
+      <div class="notification is-danger global-notification">
+        <p class="alert"><%= alert %></p>
+      </div>
     <% end %>
 
   <div class="container">
@@ -35,54 +36,41 @@
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <span class="fs-4">Freelancer</span>
       </a>
-       <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-2">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-        </form>
+
+      <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-2">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+      </form>
+
       <ul class="nav nav-pills">
         <li>
-        <%=link_to "Home", root_path, class:"nav-item nav-link"%>
+          <%=link_to "Home", root_path, class:"nav-item nav-link"%>
         </li>
 
         <li>
-        <%=link_to "About", root_path, class:"nav-item nav-link"%>
+          <%=link_to "About", root_path, class:"nav-item nav-link"%>
         </li>
-      </ul>
       
         <% if Current.user && Current.user.client? %>
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <li>
+              <%=link_to "Post Job", new_job_path, class:"job nav-item nav-link active"%>
+          </li>
+          <%= render 'shared/navbar_job'%>
+        
+        <% elsif Current.user && Current.user.freelance? %>
+          <%= render 'shared/navbar_job'%>
 
-        <div class="dropdown text-end">
-        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
-            <%= image_tag Current.user.avatar, width:"32",height:"12", class:"rounded-circle"%>
-          </a>
-          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-            <li>
-              <%=link_to Current.user.name_or_company_name,root_path, class:"dropdown-item"%>
-            </li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li>
-            <%= link_to 'Edit Password', edit_password_path, class:"dropdown-item"%>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li>
-            <%= button_to 'Sign out', logout_path, method: :delete, class:"dropdown-item"%>
-            </li>
-          </ul>
-        </div>
-      </div>
-            
-         
         <% else %>
-          <div class="col-md-3 text-end">
+          <li>
+            <%=link_to "login", sign_in_path, class:"job nav-item nav-link active"%>
+          </li>
 
-            <%=link_to "login", sign_in_path, class:"btn btn-primary"%>
-            
-            <%=link_to "Sign-up", sign_up_path, class:"btn btn-primary"%>
-            
-          </div>
-      <% end %>
+          <li>
+            <%=link_to "Sign-up", sign_up_path, class:"job nav-item nav-link active"%>
+          </li>
+        <% end %>
+      </ul>
     </header>
-    </div>
-    <%= yield %>
+  </div>
+  <%= yield %>
   </body>
 </html>

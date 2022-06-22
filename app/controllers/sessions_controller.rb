@@ -5,13 +5,20 @@ class SessionsController < ApplicationController
     def create
       user = User.find_by(email: params[:email])
       # finds existing user, checks to see if user can be authenticated
-      if user.present? && user.authenticate(params[:password])
+      if user.present? && user.client? && user.authenticate(params[:password])
+        
       # sets up user.id sessions
         session[:user_id] = user.id
         redirect_to jobs_path, notice: 'Logged in successfully'
+
+      elsif user.present? && user.freelance? && user.authenticate(params[:password])
+        
+        # sets up user.id sessions
+          session[:user_id] = user.id
+          redirect_to root_path, notice: 'Logged in successfully'
       else
-        flash.now[:alert] = 'Invalid email or password'
-        render :new
+          flash.now[:alert] = 'Invalid email or password'
+          render :new
       end
     end
 

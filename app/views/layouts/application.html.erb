@@ -48,13 +48,13 @@
         </li>
       </ul>
       
-        <% if Current.user && Current.user.freelance? %>
+        <% if Current.user && Current.user.client? %>
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
         <div class="dropdown text-end">
-         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-          Profile
-         </button>
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
+            <%= image_tag Current.user.avatar, width:"32",height:"12", class:"rounded-circle"%>
+          </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
             <li>
               <%=link_to Current.user.name_or_company_name,root_path, class:"dropdown-item"%>

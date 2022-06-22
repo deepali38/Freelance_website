@@ -74,6 +74,7 @@ group :development do
 
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
 end
+gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'mini_magick', '~> 4.11'
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]

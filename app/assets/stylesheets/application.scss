@@ -14,14 +14,30 @@
  *= require_self
  */
 
+ // *= require trix
+
 $pink: #ea4c89;
 $primary: $pink;
 
 @import "bulma";
+@import "functions";
+@import "jobs";
 
+.notification {
+  border-radius: 0;
+}
 
-.button .is-primary{
-    border-color: none;
-    color:black;
-  }
+.notification:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.hint {
+  font-size: small;
+}
+
+.tag {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 9px !important;
+}
 

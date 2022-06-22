@@ -11,6 +11,6 @@ class User < ApplicationRecord
         self.role ||=:freelance
     end
     
-    has_many :freelancer, dependent: :destroy
+    has_many :jobs, dependent: :destroy
 end
 

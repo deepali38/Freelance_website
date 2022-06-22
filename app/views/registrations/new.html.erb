@@ -5,15 +5,17 @@
 
           <h2 class="title is-2">Sign up</h2>
             <%= form_with model: @user, url: sign_up_path do |f| %>
-
+            
+          <div class="col-sm-4 "> 
             <div class="field">
               <div class="control">
-                <p>
-                <%= f.label 'Profile_picture' %><br>
+               <p>
+                <%= f.label 'Avatar' %><br>
                 <%= f.file_field :avatar %>
                 </p>
               </div>
             </div>
+          </div>
 
             <div class="field">
               <div class="control">

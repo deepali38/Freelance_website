@@ -35,7 +35,9 @@
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <span class="fs-4">Freelancer</span>
       </a>
-
+       <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-2">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
       <ul class="nav nav-pills">
         <li>
         <%=link_to "Home", root_path, class:"nav-item nav-link"%>
@@ -46,19 +48,28 @@
         </li>
       </ul>
       
-        <% if Current.user && Current.user.admin? %>
-          
-          <ul class="nav nav-pills">
+        <% if Current.user && Current.user.freelance? %>
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+        <div class="dropdown text-end">
+         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          Profile
+         </button>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
             <li>
-              <%=link_to Current.user.name_or_company_name,root_path, class:"nav-item nav-link"%>
+              <%=link_to Current.user.name_or_company_name,root_path, class:"dropdown-item"%>
             </li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
             <li>
-              <%= link_to 'Edit Password', edit_password_path, class:"nav-item nav-link"%>
+            <%= link_to 'Edit Password', edit_password_path, class:"dropdown-item"%>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+            <%= button_to 'Sign out', logout_path, method: :delete, class:"dropdown-item"%>
             </li>
           </ul>
-            
-
-              <%= button_to 'Logout', logout_path, method: :delete, class:"btn btn-primary me-2"%>
+        </div>
+      </div>
             
          
         <% else %>

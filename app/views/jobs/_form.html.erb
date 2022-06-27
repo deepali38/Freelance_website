@@ -33,10 +33,14 @@
     <div class="columns">
       <div class="field column">
         <div class="control">
-          <%= f.input :job_author, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" }, label: "Company" %>
+          <%= f.input :job_author, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label"}%>
         </div>
       </div>
     </div>
+
+    <div class="field form-group">
+      <%= f.number_field :user_id, id: :job_user_id, class:"form-control", value: Current.user.id, type: :hidden %>
+   </div>
     
     <div class="columns">
       <div class="field column is-4">

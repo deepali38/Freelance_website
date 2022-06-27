@@ -9,3 +9,22 @@
 .job{
   margin-right: 1rem;
 }
+.name{
+  font-size: 25px!important;
+}
+.bg-dark{
+  background-color: rgb(24, 49, 49)!important;
+}
+.active{
+ background-color: #ffeb3b!important;
+ color: black!important;
+}
+.col{
+  flex:1;
+  padding:.5rem;
+  background-color: #ffffff!important;
+  text-align: center;
+}
+body{
+  background-color: rgb(232, 233, 168)!important;
+}

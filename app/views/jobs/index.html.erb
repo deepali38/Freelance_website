@@ -1,35 +1,52 @@
-<div class="columns border-top">
 
-  <div class="column is-9 pl6">
-    <% @jobs.each do |job| %>
-    <div class="columns border-bottom pt4">
-      <div class="column is-8">
-        <h3 class="title is-4 index-title"><%= link_to job.title, job %></h3>
-          <ul>
-            <li><%= link_to job.job_author %></li>
-          </ul>
-        <div class="pv2 f6">
-          <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
-        </div>
-
-        <% if Current.user.admin? || job_author(job) %>
-          <ul class="pv3">
-            <li class="inline-block f6">Admin controls: </li>
-            <li class="inline-block">
-              <%= link_to 'View', job, class: 'button is-small is-link is-outlined' %></li>
-            <li class="inline-block">
-              <%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %></li>
-            <li class="inline-block">
-              <%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-link is-outlined' %></li>
-          </ul>
-        <% end %>
-
-        </div>
-        <div class="column has-text-right">
-          <p class="pt2 f6"><%= job.location %></p>
-        </div>
-      </div>
-    <% end %>
+  <div class="container px-4 py-5" id="featured-3">
+    <h1 class="pb-2 name bottom-border"><%=link_to Current.user.name_or_company_name%>
+    </h1>
   </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+        <%=link_to 'View Job Post', @job%>
+        </div>
+        <div class="col">
+        Invite freelancer
+        </div>
+        <div class="col">
+        Review proposal
+        </div>
+    </div>
+</div>
 
+<div class="column is-9 pl3 container">
+  <% @jobs.each do |job| %>
+    <% if job.user == Current.user %>
+    <div class="columns border-bottom pt4">
+    <div class="column is-8">
+      <h3 class="title is-4 index-title"><%= link_to job.title, job %></h3>
+        <ul>
+          <li><%= link_to job.job_author %></li>
+        </ul>
+      <div class="pv2 f6">
+        <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
+      </div>
+
+      <% if Current.user.admin? || job_author(job) %>
+        <ul class="pv3">
+          <li class="inline-block f6">Admin controls: </li>
+          <li class="inline-block">
+            <%= link_to 'View', job, class: 'button is-small is-link is-outlined' %></li>
+          <li class="inline-block">
+            <%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %></li>
+          <li class="inline-block">
+            <%= link_to 'Delete post', job_path(job), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%></li>
+        </ul>
+      <% end %>
+
+      </div>
+      <div class="column has-text-right">
+        <p class="pt2 f6"><%= job.location %></p>
+      </div>
+    </div>
+    <%end%>
+  <% end %>
 </div>

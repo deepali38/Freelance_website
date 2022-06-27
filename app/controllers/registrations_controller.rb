@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
         WelcomeMailer.with(user: @user).welcome_email.deliver_now
       # deliver_now is provided by ActiveJob.
         session[:user_id] = @user.id
-        redirect_to jobs_path, notice: 'Successfully created account'
+        redirect_to new_job_path, notice: 'Successfully created account'
       else
         WelcomeMailer.with(user: @user).welcome_email.deliver_now
         # deliver_now is provided by ActiveJob.

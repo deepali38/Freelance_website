@@ -30,24 +30,32 @@
         <p class="alert"><%= alert %></p>
       </div>
     <% end %>
-
-  <div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <header class="p-3 bg-dark text-white">
+  <div class="container text-white">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-        <span class="fs-4">Freelancer</span>
+        <span class="fs-4 text-white">Freelancer</span>
       </a>
 
       <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-2">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search">
       </form>
 
       <ul class="nav nav-pills">
         <li>
-          <%=link_to "Home", root_path, class:"nav-item nav-link"%>
+          <%=link_to "Home", root_path, class:"nav-item nav-link text-white"%>
         </li>
 
         <li>
-          <%=link_to "About", root_path, class:"nav-item nav-link"%>
+          <%=link_to "About", root_path, class:"nav-item nav-link text-white"%>
+        </li>
+
+        <li>
+          <%=link_to "Find jobs", jobs_path, class:"nav-item nav-link text-white"%>
+        </li>
+
+        <li>
+          <%=link_to "Find freelancer", root_path, class:"nav-item nav-link text-white"%>
         </li>
       
         <% if Current.user && Current.user.client? %>
@@ -58,6 +66,7 @@
         
         <% elsif Current.user && Current.user.freelance? %>
           <%= render 'shared/navbar_job'%>
+
 
         <% else %>
           <li>

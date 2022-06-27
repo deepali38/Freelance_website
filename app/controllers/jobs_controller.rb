@@ -69,7 +69,9 @@ class JobsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
-      @job = Job.find(params[:id])
+      unless @job = Job.where(id: params[:job_id]).first
+        redirect_to jobs_path, flash: {alert: "Post doesn't exists"}
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

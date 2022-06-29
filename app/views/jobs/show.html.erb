@@ -31,7 +31,7 @@
         <li class="pv1 inline-block">
           <%= link_to 'Edit', edit_job_path(@job), class: 'button is-small is-link is-outlined' %></li>
         <li class="pv1 inline-block">
-          <%= link_to 'Delete post', job_path(@job), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%></li>
+          <%= link_to 'Delete post', @job, data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%></li>
       </ul>
     <% end %>
   </div>

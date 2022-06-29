@@ -61,7 +61,7 @@ class JobsController < ApplicationController
   def destroy
     @job.destroy
     respond_to do |format|
-      format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
+      format.html { redirect_to jobs_url, status: :see_other, notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,9 +69,8 @@ class JobsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
-      unless @job = Job.where(id: params[:job_id]).first
-        redirect_to jobs_path, flash: {alert: "Post doesn't exists"}
-      end
+      @job = Current.user.jobs.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

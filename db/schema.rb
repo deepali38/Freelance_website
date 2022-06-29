@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_22_104031) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_27_122215) do
+  create_table "Categories_Jobs", id: false, force: :cascade do |t|
+    t.integer "Category_id", null: false
+    t.integer "Job_id", null: false
+    t.index ["Category_id", "Job_id"], name: "index_Categories_Jobs_on_category_id_and_job_id"
+    t.index ["Job_id", "Category_id"], name: "index_Categories_Jobs_on_job_id_and_category_id"
+  end
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,6 +49,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_104031) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

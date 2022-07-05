@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -18,6 +19,12 @@ Rails.application.routes.draw do
   resources :categories
   resources :jobs
   get "jobs_board", to:"jobs_board#index"
+  resources :rooms
+  resources :users
+  resources :rooms do
+    resources :messages
+  end
+ 
 
 end 
                   

@@ -1,5 +1,5 @@
 class JobsBoardController < ApplicationController
     def index
-        
-    end
+          @jobs = Job.all.order("created_at desc")
+      end
 end

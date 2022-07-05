@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   patch 'password/reset/edit', to: 'password_resets#update'
   resources :categories
   resources :jobs
+  get "jobs_board", to:"jobs_board#index"
 
 end 
                   

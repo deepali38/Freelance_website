@@ -1,3 +1,49 @@
+ <!-- banner -->
+ <div class=" mb-4 text-white bg-secondary">
+    <div class="bg-image p-5 shadow-1-strong mb-5" style="background-image: url('/assets/laptop.jpg');">
+        <div class="container mb-6">
+            <div class="col-md-6 px-5 mt-6">
+                <h1 class="display-4 fw-bold">FIND WORK</h1>
+                <h1 class="display-4 fw-bolder">FIND TALENT</h1>
+                <p class="lead my-4">
+                Enough with the old process.<br>You can get the best with just a click
+                </p>
+                <p class="lead">
+                <%=button_to "Sign-up", sign_up_path, class:"btn btn-outline-light fs-5"%>
+                </p>
+            </div>
+        </div>
+    </div>
+  </div>
 
+<!-- job -->
+<div class="container">
+	<h2 class="fs-1 mb-2 fw-bold color">Find Great Work </h2>
+	<h3 class="fs-5 mb-5">Find oppurtunities for every stage of your freelance Career</h3>
+    <div class="row mb-5">
+        <% @jobs.each do |job| %>
+        <div class="col-md-3 my-4">
+            <div class="card">
+                <img src="https://source.unsplash.com/random/1920x1080" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><%= link_to job.title%></h5>
+                    <ul>
+                        <li><%= link_to job.job_author %></li>
+                    </ul>
+                    <div class="pv2 f6 card-text">
+                        <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
+                    </div>  
+                    <div class="column has-text-right">
+                        <p class="pt2 f6"><%= job.location %></p>
+                    </div>     
+                </div>
+            </div>
+        </div>
+        <%end%>
+    </div>
 
-
+    <div class="column has-text-right">
+    <%= link_to 'Click for more Jobs', jobs_board_path, class:"btn btn-warning text-black" %>
+    </div>
+    
+</div>

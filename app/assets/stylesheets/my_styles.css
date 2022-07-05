@@ -25,6 +25,13 @@
   background-color: #ffffff!important;
   text-align: center;
 }
-body{
-  background-color: rgb(232, 233, 168)!important;
+.bg-image{
+  background-size: cover;
+  background-position: center;
 }
+.color{
+  color:#183131;
+}
+/*body{
+  background-color: rgb(232, 233, 168)!important;
+}*/

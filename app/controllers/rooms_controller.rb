@@ -10,6 +10,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.create(name: params["room"]["name"])
+    redirect_to @room
   end
 
   def show
@@ -20,7 +21,7 @@ class RoomsController < ApplicationController
     @room = Room.new
     @message = Message.new
     @messages = @single_room.messages
-
     render 'index'
   end
+
 end

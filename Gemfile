@@ -85,3 +85,4 @@ group :test do
 end
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.18'
+gem "noticed", "~> 1.5"

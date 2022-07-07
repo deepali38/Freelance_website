@@ -39,13 +39,12 @@
   color: white;
 }
 .msg-form {
-  position: fixed;
-  bottom: 0;
-  width: 90%
+  position: absolute;
+  width: 100%;
 }
 
 .col-md-10 {
-  height: 100vh;
+  height: 80vh;
   overflow: scroll;
 }
 
@@ -61,5 +60,12 @@
   border-radius: 10px;
   margin-bottom: 10px;
   background-color: #555555 ;
-  padding: 10px
+  padding: 10px;
+}
+.Text{
+  color:blue;
+}
+
+.users{
+  color:#183131;
 }

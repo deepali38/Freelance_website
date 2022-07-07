@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_05_084455) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_07_092632) do
   create_table "Categories_Jobs", id: false, force: :cascade do |t|
     t.integer "Category_id", null: false
     t.integer "Job_id", null: false
@@ -76,6 +76,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_084455) do
     t.integer "user_id"
   end
 
+  create_table "joinables", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_joinables_on_room_id"
+    t.index ["user_id"], name: "index_joinables_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "room_id", null: false
@@ -84,6 +93,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_084455) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "recipient_type", null: false
+    t.integer "recipient_id", null: false
+    t.string "type", null: false
+    t.json "params"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["read_at"], name: "index_notifications_on_read_at"
+    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -117,6 +138,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_084455) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "joinables", "rooms"
+  add_foreign_key "joinables", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "participants", "rooms"

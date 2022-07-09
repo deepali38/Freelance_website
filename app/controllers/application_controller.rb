@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  before_action :turbo_frame_request_variant
+
+  
     before_action :set_current_user
     def set_current_user
       # finds user with session data and stores it if present
@@ -8,4 +11,10 @@ class ApplicationController < ActionController::Base
       # allows only logged in user
       redirect_to sign_in_path, alert: 'You must be signed in' if Current.user.nil?
     end
+
+    private
+
+  def turbo_frame_request_variant
+    request.variant = :turbo_frame if turbo_frame_request?
+  end
 end

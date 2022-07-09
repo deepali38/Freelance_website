@@ -212,6 +212,8 @@ GEM
     notiffany (0.1.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    pagy (5.10.1)
+      activesupport
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -326,10 +328,12 @@ DEPENDENCIES
   gravatar_image_tag!
   guard (~> 2.18)
   guard-livereload (~> 2.5, >= 2.5.2)
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   mini_magick (~> 4.11)
   noticed (~> 1.5)
+  pagy (~> 5.10)
   puma (~> 5.0)
   rails (~> 7.0.3)
   selenium-webdriver

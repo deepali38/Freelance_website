@@ -31,17 +31,18 @@
   display: flex;
   justify-content: flex-end
   }
+
 </style>
   <body>
     <% if flash[:notice] %>
     	<div class="notification is-primary global-notification">
-  	  	<p class="notice"><%= notice %></p>
+  	  	<%= notice %>
     	</div>
     <% end %>
 
     <% if flash[:alert] %>
       <div class="notification is-danger global-notification">
-        <p class="alert"><%= alert %></p>
+        <%= flash[:alert] %>
       </div>
     <% end %>
   <header class="p-3 bg-dark text-white">
@@ -99,6 +100,5 @@
   </div>
   </header>
   <%= yield %>
-  <%= render 'shared/footer'%>
   </body>
 </html>

@@ -46,7 +46,7 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 gem 'simple_form', '~> 5.1'
 
@@ -86,3 +86,5 @@ end
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.18'
 gem "noticed", "~> 1.5"
+
+gem "pagy", "~> 5.10"

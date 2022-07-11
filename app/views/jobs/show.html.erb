@@ -25,7 +25,6 @@
     <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-fullwidth is-link" %>
     <% if Current.user.try(:admin) || job_author(@job) %>
       <ul class="pv3">
-        <li class="pv1 f6">Admin controls: </li>
         <li class="pv1 inline-block">
           <%= link_to 'View', @job, class: 'button is-small is-link is-outlined' %></li>
         <li class="pv1 inline-block">

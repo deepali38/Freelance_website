@@ -55,7 +55,7 @@ gem 'bulma-rails', '~> 0.9.3'
 gem 'better_errors', '~> 2.9', '>= 2.9.1'
 
 gem 'carrierwave', '~> 2.2', '>= 2.2.2'
-
+gem 'jquery-rails', '~> 4.5'
 gem 'figaro', '~> 1.2'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -75,8 +75,10 @@ group :development do
 
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
 end
+
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'mini_magick', '~> 4.11'
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"

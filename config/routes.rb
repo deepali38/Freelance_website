@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :jobs
   get "jobs_board", to:"jobs_board#index"
+  get "portfolio", to:"portfolios#index"
   resources :rooms
   resources :users
   resources :rooms do

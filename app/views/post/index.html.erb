@@ -26,9 +26,9 @@
             <div class="card">
                 <img src="https://source.unsplash.com/random/1920x1080" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title"><%= link_to job.title%></h5>
+                    <h5 class="card-title"><%= link_to job.title,job%></h5>
                     <ul>
-                        <li><%= link_to job.job_author %></li>
+                        <li><%= link_to job.job_author,job %></li>
                     </ul>
                     <div class="pv2 f6 card-text">
                         <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
@@ -60,7 +60,7 @@
                 <img src="https://source.unsplash.com/random/1920x1080" class="card-img-top" alt="...">
                 <div class="card-body">
                 
-                    <h5 class="card-title"><%= link_to profile.user.name_or_company_name%></h5>
+                    <h5 class="card-title"><%= link_to profile.user.name_or_company_name, profile%></h5>
                     <div class="pv2 f6 card-text">
                         <%= sanitize(profile.description.truncate(200, separator: '</p>')) %>
                     </div>  
@@ -75,7 +75,7 @@
     </div>
 
     <div class="column has-text-right">
-    <%= link_to 'Click for more freelancer', jobs_board_path, class:"btn btn-warning text-black" %>
+    <%= link_to 'Click for more freelancer', portfolio_path, class:"btn btn-warning text-black" %>
     </div>
     
 </div>

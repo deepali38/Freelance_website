@@ -8,6 +8,21 @@
           <%= f.input :description, required: true, input_html: { class: "textarea" }, wrapper: false, label_html: { class: "label" },placeholder:'Describe about your skills in detail' %>
         </div>
       </div>
+
+      <div class="columns">
+      <div class="field column">
+        <div class="control">
+          <label class="label">Files Upload</label>
+          <div class="file">
+            <%= f.file_field :files, multiple: true, direct_upload: true %>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <output id="list"></output>
+      </div>
+    </div>
+    
     <%= f.input :is_private, input_html: { class: "option" }%>
   </div>
 

@@ -166,4 +166,11 @@ body {
 .option{
   margin:5px;
 }
+.card-group{
+  align-items: center;
+}
+.card{
+  margin: 10px;
+  padding: 5px;
+}
 

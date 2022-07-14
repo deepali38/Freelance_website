@@ -33,7 +33,7 @@
   }
 
 </style>
-  <body>
+  <body class=" d-flex flex-column min-vh-100">
     <% if flash[:notice] %>
     	<div class="notification is-primary global-notification">
   	  	<%= notice %>
@@ -42,7 +42,7 @@
 
     <% if flash[:alert] %>
       <div class="notification is-danger global-notification">
-        <%= flash[:alert] %>
+        <%= alert %>
       </div>
     <% end %>
   <header class="p-3 bg-dark text-white">

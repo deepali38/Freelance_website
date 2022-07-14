@@ -2,6 +2,7 @@ class User < ApplicationRecord
     has_one_attached :avatar
     has_secure_password
     has_many :messages
+    has_one :profile, dependent: :destroy
     validates :email, presence: true ,uniqueness: true, format: {with: /\A[^@\s]+@[^@\s]+\z/, message: "must be valid email id" }
     enum role:[:freelance, :admin, :client]
 

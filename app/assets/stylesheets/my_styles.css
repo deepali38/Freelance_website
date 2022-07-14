@@ -150,3 +150,20 @@ body {
 .bg{
   background-color:antiquewhite;
 }
+.rounded-circle1{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.box{
+  border-radius: 40%;
+}
+
+.arrange{
+  margin:auto;
+  padding: 50px;
+}
+.option{
+  margin:5px;
+}
+

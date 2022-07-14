@@ -5,7 +5,7 @@
             </a>
             <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
               <li>
-                <%=link_to Current.user.name_or_company_name, edit_path, class:"dropdown-item"%>
+                <%=link_to Current.user.name_or_company_name, profiles_path, class:"dropdown-item"%>
               </li>
 
               <li>
@@ -13,7 +13,7 @@
               </li>
 
               <li>
-                <a class="dropdown-item" href="#">Settings</a>
+                <%=link_to 'Settings',edit_path, class:"dropdown-item"%>
               </li>
 
               <li>

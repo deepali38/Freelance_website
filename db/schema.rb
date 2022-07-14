@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_07_092632) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_14_052241) do
   create_table "Categories_Jobs", id: false, force: :cascade do |t|
     t.integer "Category_id", null: false
     t.integer "Job_id", null: false
@@ -114,6 +114,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_07_092632) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_participants_on_room_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "description"
+    t.boolean "is_private", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "rooms", force: :cascade do |t|

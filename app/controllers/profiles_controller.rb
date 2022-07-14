@@ -1,10 +1,13 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_with_http_digest, except: [:index, :show]
-  before_action :set_profile, only: %i[ show edit update destroy ]
+  before_action :authenticate_with_http_digest
+  before_action :set_profile, only: %i[trial show edit update destroy ]
 
   # GET /profiles or /profiles.json
   def index
     @profiles = Profile.all
+  end
+
+  def trial
   end
   # GET /profiles/1 or /profiles/1.json
   def show
@@ -62,7 +65,7 @@ class ProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = Profile.find(params[:id])
+      @profile = Current.user.profile
     end
 
     # Only allow a list of trusted parameters through.

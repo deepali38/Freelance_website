@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
   resources :profiles
-  get 'trial', to:"profiles#trial"
   get 'rooms/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

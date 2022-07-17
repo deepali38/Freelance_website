@@ -2,6 +2,7 @@ class JobsController < ApplicationController
   before_action :set_job, only: %i[ edit update destroy ]
   before_action :set, only: %i[show]
   before_action :authenticate_with_http_digest, except: [:index, :show]
+  before_action :set_categories
 
   # GET /jobs or /jobs.json
   def index
@@ -61,6 +62,7 @@ class JobsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to jobs_url, status: :see_other, notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
+
     end
   end
 
@@ -74,9 +76,11 @@ class JobsController < ApplicationController
       @job = Job.find(params[:id])
     end
 
-
+    def set_categories
+      @categories= Category.all.order(:name)
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:title, :description,  :location, :job_author, :apply_url, :avatar)
+      params.require(:job).permit(:title, :description,  :location, :job_author, :apply_url, :avatar, :category_id)
     end
 end

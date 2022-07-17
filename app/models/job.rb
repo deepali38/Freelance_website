@@ -1,7 +1,7 @@
 class Job < ApplicationRecord
     belongs_to :user
     mount_uploader :avatar, AvatarUploader
-    has_many :categories_jobs
-    has_many :categories, through: :categories_jobs
+    validates :category_id, presence: true
+    belongs_to :category
 
 end

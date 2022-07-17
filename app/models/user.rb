@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_one_attached :avatar
+    has_one_attached :avatar, dependent: :destroy
     has_secure_password
     has_many :messages
     has_one :profile, dependent: :destroy
@@ -17,7 +17,7 @@ class User < ApplicationRecord
     has_many :jobs, dependent: :destroy
     scope :all_except, ->(user) { where.not(id: user) }
     after_create_commit {broadcast_append_to "users"}
-    after_commit :add_default_avatar, on: %i[create update]
+    after_commit :add_default_avatar, on: %i[create]
 
     def chat_avatar 
         avatar.variant(resize_to_limit:[50,50]).processed

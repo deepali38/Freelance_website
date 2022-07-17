@@ -1,4 +1,5 @@
 class Category < ApplicationRecord
-    has_many :categories_jobs
-    has_many :jobs, through: :categories_jobs
+    validates :name, presence: true, uniqueness: true
+    has_many :jobs
+    has_many :profiles
 end

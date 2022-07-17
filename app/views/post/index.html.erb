@@ -24,12 +24,20 @@
         <% @jobs.each do |job| %>
         <div class="col-md-3 my-4">
             <div class="card">
-                <img src="https://source.unsplash.com/random/1920x1080" class="card-img-top" alt="...">
+                <div class="image">
+                    <% if !job.avatar.file.nil? %>
+                    <%= link_to image_tag(job.avatar_url(:thumb), alt: job.job_author, class: "has-text-centered logos")%>
+                    <% end %>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title"><%= link_to job.title,job%></h5>
                     <ul>
                         <li><%= link_to job.job_author,job %></li>
                     </ul>
+                    <div class="fs-4 my-4">
+                        <button type="button" class="btn btn-primary fs-6"><%= job.category.name if job.category %></button>
+                    </div>
+
                     <div class="pv2 f6 card-text">
                         <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
                     </div>  
@@ -61,6 +69,9 @@
                 <div class="card-body">
                 
                     <h5 class="card-title"><%= link_to profile.user.name_or_company_name, profile%></h5>
+                    <div class="fs-6 my-4">
+                        <button type="button" class="btn btn-primary fs-6"><%= profile.category.name if profile.category %></button>
+                    </div>
                     <div class="pv2 f6 card-text">
                         <%= sanitize(profile.description.truncate(200, separator: '</p>')) %>
                     </div>  

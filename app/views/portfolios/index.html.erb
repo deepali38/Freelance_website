@@ -10,6 +10,11 @@
         <div class="column is-8">
             <h3 class="title is-4 index-title"><%= link_to profile.user.name_or_company_name, profile %></h3>
 
+            <p class="fs-4 mb-4">
+              <button type="button" class="btn btn-primary"><%= profile.category.name if profile.category %></button>
+            </p>
+
+
             <div class="pv2 f6">
                 <%= sanitize(profile.description.truncate(200, separator: '</p>')) %>
             </div>

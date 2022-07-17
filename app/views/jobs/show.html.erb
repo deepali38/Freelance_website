@@ -29,8 +29,8 @@
           <%= link_to 'View', @job, class: 'button is-small is-link is-outlined' %></li>
         <li class="pv1 inline-block">
           <%= link_to 'Edit', edit_job_path(@job), class: 'button is-small is-link is-outlined' %></li>
-        <li class="pv1 inline-block">
-          <%= link_to 'Delete post', @job, data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%></li>
+        <li class="pv1 inline-block pos">
+          <%= button_to 'Delete post',@job, method: :delete,class: " button is-danger is-small is-round "%></li>
       </ul>
     <% end %>
   </div>

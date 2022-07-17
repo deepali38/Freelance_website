@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_with_http_digest
   before_action :set_profile, only: %i[edit update destroy ]
   before_action :set, only: %i[show]
+  before_action :set_categories
 
   # GET /profiles or /profiles.json
   def index
@@ -71,8 +72,12 @@ class ProfilesController < ApplicationController
       @profile = Profile.find(params[:id])
     end
 
+    def set_categories
+      @categories= Category.all.order(:name)
+    end
+    
     # Only allow a list of trusted parameters through.
     def profile_params
-      params.require(:profile).permit(:description, :is_private, files: [])
+      params.require(:profile).permit(:description, :is_private,:category_id, files: [])
     end
 end

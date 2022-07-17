@@ -1,9 +1,8 @@
-
-  <div class="container px-4 py-5" id="featured-3">
+  <div class="container">
+  <div class=" px-4 py-5 text-center" id="featured-3">
     <h1 class="pb-2 name bottom-border"><%=link_to Current.user.name_or_company_name%>
     </h1>
   </div>
-<div class="container">
     <div class="row">
         <div class="col">
         <%=link_to 'View Job Post', @job%>
@@ -15,9 +14,8 @@
         Review proposal
         </div>
     </div>
-</div>
 
-<div class="column is-9 pl3 container">
+<div class="column pl3">
   <% @jobs.each do |job| %>
     <% if job.user == Current.user %>
     <div class="columns border-bottom pt4">
@@ -42,16 +40,18 @@
           <li class="inline-block">
             <%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %></li>
           <li class="inline-block">
-            <%= link_to 'Delete post', job_path(job), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%></li>
+            <%= button_to 'Delete post',job, method: :delete,class: "button is-danger is-small is-rounded mv4"%></li>
         </ul>
       <% end %>
 
       </div>
       <div class="column has-text-right">
+        <button type="button" class="btn btn-dark"><%= job.category.name if job.category %></button>
         <p class="pt2 f6"><%= job.location %></p>
       </div>
     </div>
     <%end%>
   <% end %>
   
+</div>
 </div>

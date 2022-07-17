@@ -6,6 +6,8 @@
   </a>
 
   <h1 class="mt-3 mb-4"><%=Current.user.name_or_company_name%></h1>
+  
+ <%= link_to "Edit this profile", edit_profile_path(Current.user.profile) %> 
  
   <div class="card text-center mb-6" style="background-color: #eee;">
     <div class="card-body">
@@ -14,7 +16,6 @@
           Seems like you have not created your profile page yet. to create it  click at the below link and starts your journey towards immense opputunity<br>
           <%= link_to "Create a profile", new_profile_path %>
         </p>
-  
       <% else %>
         <div id="profiles">
         <%= render Current.user.profile %>

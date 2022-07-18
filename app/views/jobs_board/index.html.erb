@@ -1,4 +1,14 @@
-<div class="column is-9 pl3 container">
+<div class="container">
+  <div class=" d-flex justify-content-end col-12 my-4">
+  <%= form_tag(jobs_board_path, method: "get", remote: true) do %>
+        <%= collection_select :job, :category_id, Category.all, :id, :name, prompt: true %>
+      
+        <%= submit_tag "Search", class:'btn btn-dark '%>
+  <%end%>
+  </div>
+
+
+<div class="column is-12 pl3">
   <% @jobs.each do |job| %>
     <div class="columns border-bottom pt4">
      <div class="column is-1">
@@ -36,5 +46,6 @@
     </div>
   <% end %>
   
+</div>
 </div>
 <%= render 'shared/footer'%>

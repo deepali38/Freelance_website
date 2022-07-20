@@ -2,7 +2,13 @@
   <p class="fs-4 mb-4">
   <button type="button" class="btn btn-primary"><%= profile.category.name if profile.category %></button>
   </p>
-
+  <p>
+    <strong class="fs-2">User:</strong>
+    <br>
+    <div class="mb-4 fs-4 user">
+    <%= profile.user.name_or_company_name%>
+    </div>
+  </p>
   <p>
     <strong class="fs-4">Description:</strong>
     <br>

@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   end
   get "bids", to:"jobs#bid_show"
   get "view", to:"profiles#view"
- 
-
+ get "profiles", to: "profiles#show", as: :user_root_path
 end 
                   

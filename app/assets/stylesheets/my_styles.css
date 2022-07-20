@@ -221,3 +221,7 @@ button a{
 .float-right{
   width: 50px;
 }
+.user{
+  color: green;
+  font-weight: 500;
+}

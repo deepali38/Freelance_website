@@ -40,7 +40,8 @@
 
                     <div class="pv2 f6 card-text">
                         <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
-                    </div>  
+                    </div>
+
                     <div class="column has-text-right">
                         <p class="pt2 f6"><%= job.location %></p>
                     </div>     
@@ -73,8 +74,12 @@
                         <button type="button" class="btn btn-primary fs-6"><%= profile.category.name if profile.category %></button>
                     </div>
                     <div class="pv2 f6 card-text">
+                        <%if profile.description.nil?%>
+                            <%=sanitize(profile.description)%>
+                        <%else%>
                         <%= sanitize(profile.description.truncate(200, separator: '</p>')) %>
-                    </div>  
+                        <%end%>
+                    </div> 
                     <div class="column has-text-right">
                         <p class="pt2 f6"></p>
                     </div>     

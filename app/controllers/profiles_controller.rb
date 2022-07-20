@@ -22,6 +22,11 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def view
+    @profiles=Profile.all
+    @profile= Profile.find(params[:id])
+    @current_user = Current.user
+  end
   # GET /profiles/1/edit
   def edit
   end

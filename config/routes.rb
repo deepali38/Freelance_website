@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   get "attachments/:id/purge", to: "attachments#purge"
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
   resources :categories
-  resources :jobs
+  resources :jobs do
+    resources :bids
+  end
   get "jobs_board", to:"jobs_board#index"
   get "portfolio", to:"portfolios#index"
   resources :rooms
@@ -31,6 +33,8 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
   end
+  get "bids", to:"jobs#bid_show"
+  get "view", to:"profiles#view"
  
 
 end 

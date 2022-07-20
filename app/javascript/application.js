@@ -3,9 +3,3 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "direct_uploads"
 
-$(document).ready(function(){
-  setTimeout(function(){
-    $('.notification').remove();
-  }, 5000);
- })
-

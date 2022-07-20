@@ -40,8 +40,11 @@
 
       </div>
       <div class="column has-text-right">
-         <button type="button" class="btn btn-primary"><%= job.category.name if job.category %></button>
+         <button type="button" class="btn btn-primary btn-sm"><%= job.category.name if job.category %></button>
         <p class="pt2 f6"><%= job.location %></p>
+          <% if Current.user && Current.user.freelance?%>
+              <button type="button" class="btn btn-danger btn-md button-disable"><%= link_to 'BID',new_job_bid_path(job), class:'bid'%></button>
+          <%end%>
       </div>
     </div>
   <% end %>

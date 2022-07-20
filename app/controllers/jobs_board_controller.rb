@@ -5,10 +5,9 @@ class JobsBoardController < ApplicationController
         else
           @jobs = Job.all.order("created_at desc")
         end
-      end
-
-    def show 
     end
+
+    private
     def job_params 
         params.require(:job).permit(:title, :description,  :location, :job_author, :apply_url, :avatar, :category_id)
     end

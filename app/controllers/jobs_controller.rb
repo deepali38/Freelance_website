@@ -15,11 +15,16 @@ class JobsController < ApplicationController
   def show
   end
 
+  def bid_show
+    @bids=Bid.all
+    @jobs=Job.all
+  end
+
   # GET /jobs/new
   def new
     @job = Current.user.jobs.build
   end
-
+ 
   # GET /jobs/1/edit
   def edit
   end

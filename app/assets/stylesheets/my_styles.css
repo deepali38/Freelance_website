@@ -9,6 +9,10 @@ body {
   height: 30px!important;
   width: 30px
 }
+a{
+  text-decoration: none;
+
+}
 .job{
   margin-right: 1rem;
 }
@@ -200,4 +204,20 @@ select{
 option{ 
   margin: 5px !important;
   background-color:rgb(218, 214, 214);
+}
+
+button a{
+  color:white !important;
+}
+
+.fs-10{
+  font-size: 12px;
+}
+.bid-button{
+  border: 1px solid green;
+  padding: 5px;
+  margin: 5px;
+}
+.float-right{
+  width: 50px;
 }

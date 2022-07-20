@@ -1,0 +1,36 @@
+<div class="container">
+  <p class="my-6"> Total No. of Bids on all the jobs: 
+    <span class="float-right btn btn-success">
+      <%= @bids.count%>
+    </span>
+  </p>
+
+  <div class="column pl3">
+    <% @jobs.each do |job| %>
+    <%job.bids.each do |bid|%>
+      <div class="columns border-bottom pt4">
+        <div class="column is-1">
+        </div>
+          <div class="column is-8">
+            <h3 class="title is-4 index-title"><%= link_to bid.user.name_or_company_name, user_path(bid.user_id)%> <span class="fs-10"></h3> 
+            <ul>
+              <li><%= link_to bid.job.title %></li>
+            </ul>
+            <div class="pv2 f6">
+            <%= sanitize(bid.job.description.truncate(200, separator: '</p>')) %>
+            </div>
+            <ul class="pv3">
+              <li class="inline-block">
+                <%= link_to 'View',job, class: 'button is-small is-link is-outlined' %></li>
+            </ul>
+          </div>
+          <div class="column has-text-right">
+            <P>
+              In process
+            </p>
+        </div>
+      </div>
+      <%end%>   
+    <%end%>
+  </div>
+</div>

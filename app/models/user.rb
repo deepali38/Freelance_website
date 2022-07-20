@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_one_attached :avatar, dependent: :destroy
     has_secure_password
+    has_many :bids
     has_many :messages
     has_one :profile, dependent: :destroy
     before_create :build_profile

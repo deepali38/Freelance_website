@@ -35,7 +35,7 @@
 </style>
   <body class=" d-flex flex-column min-vh-100">
     <% if flash[:notice] %>
-    	<div class="notification is-primary global-notification">
+    	<div class="notification is-success global-notification">
   	  	<%= notice %>
     	</div>
     <% end %>
@@ -103,4 +103,11 @@
   
   <%= yield %>
   </body>
+  <script type="text/javascript">
+$(document).ready(function(){
+  setTimeout(function(){
+    $('.notification').remove();
+  }, 5000);
+ })
+</script>
 </html>

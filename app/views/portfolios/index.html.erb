@@ -24,7 +24,11 @@
 
 
               <div class="pv2 f6">
-                  <%= sanitize(profile.description.truncate(200, separator: '</p>')) %>
+                  <%if profile.description.nil?%>
+                            <%=sanitize(profile.description)%>
+                        <%else%>
+                        <%= sanitize(profile.description.truncate(200, separator: '</p>')) %>
+                        <%end%>
               </div>
 
         

@@ -8,7 +8,7 @@
         <%=link_to 'View Job Post', @job%>
         </div>
         <div class="col">
-        Invite freelancer
+        <%=link_to 'Bids on jobs', bids_path%>
         </div>
         <div class="col">
         Review proposal
@@ -19,13 +19,14 @@
   <% @jobs.each do |job| %>
     <% if job.user == Current.user %>
     <div class="columns border-bottom pt4">
-    <div class="column is-1">
+      <div class="column is-1">
         <% if !job.avatar.file.nil? %>
           <%= link_to image_tag(job.avatar_url(:thumb), alt: job.job_author, class: "has-text-centered")%>
         <% end %>
       </div>
+      
     <div class="column is-8">
-      <h3 class="title is-4 index-title"><%= link_to job.title, job %></h3>
+      <h3 class="title is-4 index-title"><%= link_to job.title, job %> <span class="fs-10"> <%= job.location %></span></h3>
         <ul>
           <li><%= link_to job.job_author %></li>
         </ul>
@@ -46,8 +47,11 @@
 
       </div>
       <div class="column has-text-right">
-        <button type="button" class="btn btn-dark"><%= job.category.name if job.category %></button>
-        <p class="pt2 f6"><%= job.location %></p>
+        <button type="button" class="btn btn-dark my-4"><%= job.category.name if job.category %></button>
+        <P>
+        Total No. of Bids:<span class="bid-button"> <%= link_to job.bids.count, bids_path%>
+        </p>
+        
       </div>
     </div>
     <%end%>

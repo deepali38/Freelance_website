@@ -7,6 +7,8 @@ class JobsController < ApplicationController
   # GET /jobs or /jobs.json
   def index
       @jobs = Job.all.order("created_at desc")
+      @user= Current.user
+      @bids=Bid.all.order("created_at desc")
     
   end
 
@@ -16,10 +18,16 @@ class JobsController < ApplicationController
   end
 
   def bid_show
-    @bids=Bid.all
-    @jobs=Job.all
+    @jobs = Job.all.order("created_at desc")
+    @bids =Bid.all.order("created_at desc")
+    @user= Current.user
   end
 
+  def upload_show
+    @jobs = Job.all.order("created_at desc")
+    @bids =Bid.all.order("created_at desc")
+    @user= Current.user
+  end
   # GET /jobs/new
   def new
     @job = Current.user.jobs.build

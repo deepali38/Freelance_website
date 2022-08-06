@@ -2,6 +2,7 @@ class RegistrationsController < ApplicationController
     def new
         @user = User.new
     end
+
     def create
     @user = User.new(user_params)
     if @user.save 
@@ -9,12 +10,12 @@ class RegistrationsController < ApplicationController
         WelcomeMailer.with(user: @user).welcome_email.deliver_now
       # deliver_now is provided by ActiveJob.
         session[:user_id] = @user.id
-        redirect_to new_job_path, notice: 'Successfully created account'
+        redirect_to notice_path, notice: 'Successfully created account'
       else
         WelcomeMailer.with(user: @user).welcome_email.deliver_now
         # deliver_now is provided by ActiveJob.
         session[:user_id] = @user.id
-        redirect_to profiles_path, notice: 'Successfully created account'
+        redirect_to notice_path, notice: 'Successfully created account'
       end
 
     else

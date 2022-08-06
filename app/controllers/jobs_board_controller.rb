@@ -4,6 +4,8 @@ class JobsBoardController < ApplicationController
             @jobs=Job.search(params[:job][:category_id])
         else
           @jobs = Job.all.order("created_at desc")
+          @bids =Bid.all.order("created_at desc")
+          @user= Current.user
         end
     end
 

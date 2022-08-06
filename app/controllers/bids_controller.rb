@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
-  before_action :get_job
-  before_action :set_bid, only: %i[show]
+  before_action :get_job, except: [:accept, :reject]
+  before_action :set_bid,except: [:accept, :reject]
   before_action :authenticate_with_http_digest, except: [:index, :show]
     def index
         
@@ -18,7 +18,33 @@ class BidsController < ApplicationController
           redirect_to jobs_board_path, alert: ' You cant make a new bid since you have already made a bid'
         end
     end
-    
+
+
+  # PATCH /bids/:id/accept
+  # @TODO authorize that the user should actually be allowed the offer
+    def accept
+      @bid=Bid.find(params[:bid_id])
+      if params[:action]=="accept"
+        @bid.update!(status: :Accepted)
+        redirect_to bids_path, notice: 'Bid is accepted'
+       else
+       redirect_to bids_path, notice: 'Bid status unsuccessful' 
+      end
+    end
+
+  # PATCH /bids/:id/reject
+  # @TODO authorize that the user should actually be reject the offer
+
+    def reject
+      @bid=Bid.find(params[:bid_id])
+      if params[:action]=="reject"
+        @bid.update!(status: :Rejected)
+        redirect_to bids_path, notice: 'Bid is Rejected'
+      else
+      redirect_to bids_path, notice: 'Bid status unsuccessful' 
+      end
+    end
+
     private 
     
     def bid_params

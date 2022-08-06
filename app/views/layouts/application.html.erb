@@ -55,7 +55,6 @@
       <!--<form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-2">
         <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search">
       </form>-->
-
       <ul class="nav nav-pills">
         <li>
           <%=link_to "Home", root_path, class:"nav-item nav-link text-white"%>
@@ -73,7 +72,7 @@
           <%=link_to "Find freelancer", portfolio_path, class:"nav-item nav-link text-white"%>
         </li>
       
-        <% if Current.user && Current.user.client? %>
+        <% if Current.user && Current.user.client? && Current.user.approved?%>
           <li>
           <%= link_to '<i class="fas fa-envelope my-1 mx-1 fa-2x job nav-item"></i>'.html_safe, rooms_url, class:"sec counter counter"%>
           </li>
@@ -81,9 +80,22 @@
           <li>
               <%=link_to "Post Job", new_job_path, class:"job nav-item nav-link active mx-2"%>
           </li>
+
+         <li>
+            <%= link_to rooms_path do %>
+             <i class="	far fa-comments job nav-item nav-link active mx-2 my-1"></i>
+            <% end %>
+          </li>
+          
           <%= render 'shared/navbar_job'%>
         
-        <% elsif Current.user && Current.user.freelance? %>
+        <% elsif Current.user && Current.user.freelance? && Current.user.approved? %>
+          <li>
+            <%= link_to rooms_path do %>
+             <i class="	far fa-comments job nav-item nav-link active mx-2 my-1"></i>
+            <% end %>
+          </li>
+
           <%= render 'shared/navbar_job'%>
 
 

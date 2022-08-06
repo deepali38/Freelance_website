@@ -1,61 +1,114 @@
-  <div class="container">
-  <div class=" px-4 py-5 text-center" id="featured-3">
-    <h1 class="pb-2 name bottom-border"><%=link_to Current.user.name_or_company_name%>
-    </h1>
-  </div>
-    <div class="row">
-        <div class="col">
-        <%=link_to 'View Job Post', @job%>
-        </div>
-        <div class="col">
-        <%=link_to 'Bids on jobs', bids_path%>
-        </div>
-        <div class="col">
-        Review proposal
-        </div>
+<div class="container">
+    <div class=" px-4 py-5 text-center" id="featured-3">
+      <h1 class="pb-2 name bottom-border"><%=link_to Current.user.name_or_company_name%>
+      </h1>
     </div>
+    <div class="row">
+      <% if @user.client?%>
+          <div class="col">
+          <%=link_to 'View Job Post',jobs_path%>
+          </div>
+          <div class="col">
+          <%=link_to 'Bids on jobs', bids_path%>
+          </div>
+          <div class="col">
+           <%=link_to 'Project Files uploads', files_path%>
+          </div>
+      <%else%>
+          <div class="col">
+          <%=link_to 'Applied Jobs',jobs_path%>
+          </div>
+          <div class="col">
+          <%=link_to 'Bid Status', bids_path%>
+          </div>
+          <div class="col">
+          <%=link_to 'Upload Documents', files_path%>
+          </div>
+      <%end%>
+    </div>
+    <%if Current.user.client?%>
 
-<div class="column pl3">
-  <% @jobs.each do |job| %>
-    <% if job.user == Current.user %>
-    <div class="columns border-bottom pt4">
-      <div class="column is-1">
-        <% if !job.avatar.file.nil? %>
-          <%= link_to image_tag(job.avatar_url(:thumb), alt: job.job_author, class: "has-text-centered")%>
+      <p class="my-6"> Total No. of Bids on all the jobs: 
+        <span class="float-right btn btn-success">
+          <%= @user.jobs.count%>
+        </span>
+      </p>
+
+      <div class="column pl3">
+        <% @jobs.each do |job| %>
+          <% if job.user == Current.user %>
+          <div class="columns border-bottom pt4">
+            <div class="column is-1">
+              <% if !job.avatar.file.nil? %>
+                <%= link_to image_tag(job.avatar_url(:thumb), alt: job.job_author, class: "has-text-centered")%>
+              <% end %>
+            </div>
+            
+          <div class="column is-8">
+            <h3 class="title is-4 index-title"><%= link_to job.title, job %> <span class="fs-10"> <%= job.location %></span></h3>
+              <ul>
+                <li><%= link_to job.job_author %></li>
+              </ul>
+            <div class="pv2 f6">
+              <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
+            </div>
+
+            <% if Current.user.admin? || job_author(job) %>
+              <ul class="pv3">
+                <li class="inline-block">
+                  <%= link_to 'View', job, class: 'button is-small is-link is-outlined' %></li>
+                <li class="inline-block">
+                  <%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %></li>
+                <li class="inline-block">
+                  <%= button_to 'Delete post',job, method: :delete,class: "button is-danger is-small is-rounded mv4"%></li>
+              </ul>
+            <% end %>
+
+            </div>
+            <div class="column has-text-right">
+              <button type="button" class="btn btn-dark my-4"><%= job.category.name if job.category %></button>
+              <P>
+              Total No. of Bids:<span class="bid-button"> <%= link_to job.bids.count, bids_path%>
+              </p>
+              
+            </div>
+          </div>
+          <%end%>
         <% end %>
-      </div>
-      
-    <div class="column is-8">
-      <h3 class="title is-4 index-title"><%= link_to job.title, job %> <span class="fs-10"> <%= job.location %></span></h3>
-        <ul>
-          <li><%= link_to job.job_author %></li>
-        </ul>
-      <div class="pv2 f6">
-        <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
-      </div>
-
-      <% if Current.user.admin? || job_author(job) %>
-        <ul class="pv3">
-          <li class="inline-block">
-            <%= link_to 'View', job, class: 'button is-small is-link is-outlined' %></li>
-          <li class="inline-block">
-            <%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %></li>
-          <li class="inline-block">
-            <%= button_to 'Delete post',job, method: :delete,class: "button is-danger is-small is-rounded mv4"%></li>
-        </ul>
-      <% end %>
-
-      </div>
-      <div class="column has-text-right">
-        <button type="button" class="btn btn-dark my-4"><%= job.category.name if job.category %></button>
-        <P>
-        Total No. of Bids:<span class="bid-button"> <%= link_to job.bids.count, bids_path%>
-        </p>
         
       </div>
-    </div>
+
+    <%else%>
+      <p class="my-6"> Total No. of jobs applied: 
+        <span class="float-right btn btn-success">
+          <%= @user.bids.count%>
+        </span>
+      </p>
+
+      <div class="column pl3">
+        <% @bids.each do |bid| %>
+          <% if bid.user == Current.user %>
+          <div class="columns border-bottom pt4">
+            
+          <div class="column is-8">
+            <h3 class="title is-4 index-title"><%= link_to bid.job.title%> <span class="fs-10"> <%= bid.job.location %></span></h3>
+              <ul>
+                <li><%= link_to bid.
+                job.job_author %></li>
+              </ul>
+            <div class="pv2 f6">
+              <%= sanitize(bid.job.description.truncate(200, separator: '</p>')) %>
+            </div>
+
+            </div>
+            <div class="column has-text-right">
+              <button type="button" class="btn btn-dark my-4"><%= bid.job.category.name if bid.job.category %></button>
+              
+            </div>
+          </div>
+          <%end%>
+        <% end %>
+        
+      </div>
     <%end%>
-  <% end %>
-  
-</div>
 </div>

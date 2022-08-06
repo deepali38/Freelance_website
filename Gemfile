@@ -2,7 +2,8 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.1"
-
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
+gem 'font-awesome-sass', '~> 6.1', '>= 6.1.2'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
 

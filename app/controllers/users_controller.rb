@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     render "rooms/index"
   end
 
+  
   private
   def get_name(user1, user2)
     users = [user1, user2].sort

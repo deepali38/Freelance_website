@@ -1,0 +1,19 @@
+<div class="container">
+    <table class="table table-striped my-6">
+        <thead>
+            <tr>
+                <th scope="col">User ID</th>
+                <th scope="col">UserName</th>
+                <th scope="col"> Registration_Approval</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+        <% @user.each do |user|%>
+            <tr>
+            <th scope="row"><%=user.id%></th>
+            <td><%=user.name_or_company_name%></td>
+            <td><%=button_to "Accept", admin_accept_path(user), method: :patch, class:'btn btn-success my-2' %></td>
+        <%end%>
+        </tbody>
+    </table>
+</div>

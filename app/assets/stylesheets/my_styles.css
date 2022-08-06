@@ -79,7 +79,7 @@ a{
   margin-bottom: 0px;
 }
 #chatroom_container {
-  margin-right: 0px !important;
+  margin: auto !important;
   overflow-x: hidden;
   overflow-y: hidden;
   
@@ -130,7 +130,9 @@ a{
   background-color: #343a40 !important;
   color: #fff;
 }
-
+.ty{
+  width: 100% !important;;
+}
 .name {
   margin-top: 15px;
   padding-bottom: 0px;
@@ -224,4 +226,10 @@ button a{
 .user{
   color: green;
   font-weight: 500;
+}
+
+
+.bi{
+  width:50px !important;
+  height:40px !important;
 }

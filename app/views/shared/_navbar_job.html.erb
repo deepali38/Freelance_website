@@ -7,6 +7,11 @@
               <li>
                 <%=link_to Current.user.name_or_company_name, profiles_path, class:"dropdown-item"%>
               </li>
+              <%if Current.user.isadmin? %>
+                <li>
+                  <%=link_to 'ADMIN',admin_path, class:"dropdown-item"%>
+                </li>
+              <%end%>
 
               <li>
                 <%=link_to 'Dashboard',jobs_url, class:"dropdown-item"%>

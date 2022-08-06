@@ -26,6 +26,13 @@ Rails.application.routes.draw do
   resources :jobs do
     resources :bids
   end
+
+  resources :bids, only:[] do
+    patch :accept
+    get :accept
+    get :reject
+    patch :reject
+  end
   get "jobs_board", to:"jobs_board#index"
   get "portfolio", to:"portfolios#index"
   resources :rooms
@@ -34,7 +41,14 @@ Rails.application.routes.draw do
     resources :messages
   end
   get "bids", to:"jobs#bid_show"
+  get "files", to:"jobs#upload_show"
   get "view", to:"profiles#view"
- get "profiles", to: "profiles#show", as: :user_root_path
+  get "profiles", to: "profiles#show", as: :user_root_path
+  get "admin", to:"admin#index"
+  resources :admin, only:[] do
+    patch :accept
+    get :accept
+  end
+  get "notice", to:"notice#index"
 end 
                   

@@ -15,10 +15,15 @@
  */
 
  // *= require trix
+ /*
+ *= require font-awesome
+ */
 
 @import "bulma";
 @import "functions";
 @import "jobs";
+
+
 
 .notification {
   border-radius: 0;

@@ -22,7 +22,7 @@
     <h5 class="is-5 has-text-centered"><%= link_to @job.job_author%></h5>
 
 
-    <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-fullwidth is-link" %>
+    <%= link_to 'Apply to this job', bids_path, class:"button is-rounded is-fullwidth is-link" %>
     <% if Current.user.try(:admin) || job_author(@job) %>
       <ul class="pv3">
         <li class="pv1 inline-block">

@@ -7,6 +7,7 @@ class User < ApplicationRecord
     before_create :build_profile
     accepts_nested_attributes_for :profile
     validates :email, presence: true ,uniqueness: true, format: {with: /\A[^@\s]+@[^@\s]+\z/, message: "must be valid email id" }
+    #validates :approved
     enum role:[:freelance, :admin, :client]
 
     after_initialize( :set_default_role, {if: :new_record?})

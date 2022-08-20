@@ -9,8 +9,53 @@
       <%= @job.description.html_safe %>
     </div>
 
-    <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-large is-fullwidth is-link" %>
+    <%# <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-large is-fullwidth is-link" %>
 
+    <% if Current.user && Current.user.client? && Current.user.approved? %>
+      <section class="combid">
+        <% @bids.each do |bid| %> 
+          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                  <table class="table manage-candidates-top mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Candidate Name</th>
+                        <th class="text-center">Amount</th>
+                        <th class="action text-center">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="candidates-list">
+
+                        <td class="candidate-list-favourite-time text-center">
+                          <div class="candidate-list-details">
+                            <div class="candidate-list-info">
+                              <div class="candidate-list-title fs-4">
+                                <%= link_to bid.user.name_or_company_name, bid.user.profile %>
+                              </div>
+                              </div>
+                          </div>
+                        </td>
+
+                        <td class="candidate-list-favourite-time text-center">
+                            <span class="candidate-list-time order-1"><%= bid.amount %> </span>
+                        </td>
+
+                        <td class="candidate-list-favourite-time text-center">
+                            <span class="candidate-list-time order-1"><%= bid.status %></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </section>
+    <%end%>
   </div>
 
   <div class="column is-2 is-offset-1 has-text-centered">
@@ -22,7 +67,7 @@
     <h5 class="is-5 has-text-centered"><%= link_to @job.job_author%></h5>
 
 
-    <%= link_to 'Apply to this job', bids_path, class:"button is-rounded is-fullwidth is-link" %>
+    <%# <%= link_to 'Apply to this job', bids_path, class:"button is-rounded is-fullwidth is-link" %>
     <% if Current.user.try(:admin) || job_author(@job) %>
       <ul class="pv3">
         <li class="pv1 inline-block">

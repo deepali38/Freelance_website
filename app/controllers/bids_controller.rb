@@ -1,6 +1,5 @@
 class BidsController < ApplicationController
   before_action :get_job, except: [:accept, :reject]
-  before_action :set_bid,except: [:accept, :reject]
   before_action :authenticate_with_http_digest, except: [:index, :show]
     def index
         
@@ -27,6 +26,8 @@ class BidsController < ApplicationController
       if params[:action]=="accept"
         @bid.update!(status: :Accepted)
         redirect_to bids_path, notice: 'Bid is accepted'
+        # redirect_to job_path(@bid.job.id), notice: 'Bid is accepted'
+        StatusNotification.with(bid: @bid).deliver_later(@bid.user)
        else
        redirect_to bids_path, notice: 'Bid status unsuccessful' 
       end
@@ -40,6 +41,8 @@ class BidsController < ApplicationController
       if params[:action]=="reject"
         @bid.update!(status: :Rejected)
         redirect_to bids_path, notice: 'Bid is Rejected'
+        StatusNotification.with(bid: @bid).deliver_later(@bid.user)
+
       else
       redirect_to bids_path, notice: 'Bid status unsuccessful' 
       end
@@ -54,9 +57,4 @@ class BidsController < ApplicationController
     def get_job 
         @job=Job.find(params[:job_id])
     end
-
-    def set_bid
-        @bid=@job.bids.find(params[:id])
-    end
-    
 end

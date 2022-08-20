@@ -63,6 +63,7 @@
 	<h3 class="fs-5 mb-5">Find oppurtunities for every stage of your freelance Career</h3>
     <div class="row mb-5">
         <% @profiles.each do |profile| %>
+        <% if profile.user.role=="freelance"%>
         <% if !profile.is_private?%>
         <div class="col-md-3 my-4">
             <div class="card">
@@ -86,6 +87,7 @@
                 </div>
             </div>
         </div>
+        <%end%>
         <%end%>
         <%end%>
     </div>

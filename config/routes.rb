@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  
-  resources :profiles
-  get 'rooms/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
   root to:"post#index"
+  
+  # user sign-up and sign-in
   get "sign_up", to:"registrations#new"
   post 'sign_up', to: 'registrations#create'
   get "edit", to:"registration_edit#edit"
@@ -20,21 +18,40 @@ Rails.application.routes.draw do
   post 'password/reset', to: 'password_resets#create'
   get 'password/reset/edit', to: 'password_resets#edit'
   patch 'password/reset/edit', to: 'password_resets#update'
-  get "attachments/:id/purge", to: "attachments#purge"
-  delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
+  resources :notices
+
+  # admin + accepting user registration via admin approval
+  resources :admin
+  resources :admin, only:[] do
+    patch :accept
+    get :accept
+  end
+
+  #categories
   resources :categories
+
+  # Profile page of user
+  resources :profiles
+
+  # jobs + nested bids
   resources :jobs do
     resources :bids
   end
 
+  get "attachments/:id/purge", to: "attachments#purge"
+  delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
+
+  # Accepting and rejecting a bid
   resources :bids, only:[] do
     patch :accept
     get :accept
     get :reject
     patch :reject
   end
+  
   get "jobs_board", to:"jobs_board#index"
   get "portfolio", to:"portfolios#index"
+  get 'rooms/index'
   resources :rooms
   resources :users
   resources :rooms do
@@ -44,11 +61,8 @@ Rails.application.routes.draw do
   get "files", to:"jobs#upload_show"
   get "view", to:"profiles#view"
   get "profiles", to: "profiles#show", as: :user_root_path
-  get "admin", to:"admin#index"
-  resources :admin, only:[] do
-    patch :accept
-    get :accept
-  end
-  get "notice", to:"notice#index"
+
+  
+  
 end 
                   

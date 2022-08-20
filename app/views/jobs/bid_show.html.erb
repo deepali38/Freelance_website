@@ -39,7 +39,7 @@
                   <div class="column is-8">
                     <h3 class="title is-4 index-title"><%= link_to bid.user.name_or_company_name, bid.user.profile%> <span class="fs-10"></h3> 
                     <ul>
-                      <li><%= link_to bid.job.title %></li>
+                      <li>Job ID: <%= link_to bid.job.id %> || <%= link_to bid.job.title %></li>
                       <li><%= link_to bid.job.job_author %></li>
                     </ul>
                     <div class="pv2 f6">

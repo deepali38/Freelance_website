@@ -1,9 +1,8 @@
-<h1>New category</h1>
+<div class="container my-6">
+  <h1 class="my-4">New category</h1>
 
-<%= render "form", category: @category %>
-
-<br>
-
-<div>
-  <%= link_to "Back to categories", categories_path %>
+  <%= render "form", category: @category %>
+  <div class="my-4">>
+    <%= link_to "Back to categories", categories_path %>
+  </div>
 </div>

@@ -1,14 +1,24 @@
- <h1>Edit Password</h1>
-  <%= form_with model: Current.user, url: edit_password_path do |f| %>
-    <p>
-    <%= f.label 'password:'%><br>
-    <%= f.password_field :password %>
-    </p>
-    <p>
-    <%= f.label 'password_confirmation:'%><br>
-    <%= f.password_field :password_confirmation %>
-    </p>
-    <p> 
-    <%= f.submit 'Update' %>
-    </p>
-  <% end %>
+ <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+        <h1 class="my-3">Edit Password</h1>
+        <%= form_with model: Current.user, url: edit_password_path do |f| %>
+          <p>
+          <%= f.label 'password:'%><br>
+          <%= f.password_field :password %>
+          </p>
+
+          <p>
+          <%= f.label 'password_confirmation:'%><br>
+          <%= f.password_field :password_confirmation %>
+          </p>
+
+          <p> 
+          <%= f.submit 'Update', class:"my-4" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
   before_action :authenticate_with_http_digest, only: [:new,:edit, :update, :destroy]
+  before_action :admin
 
   # GET /categories or /categories.json
   def index
@@ -68,4 +69,10 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name)
     end
+
+    def admin
+      redirect_to root_path, alert: 'You are Not an admin' unless Current.user.isadmin?
+      #redirects to previous page
+  end
+
 end

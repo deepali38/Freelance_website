@@ -1,22 +1,34 @@
 class User < ApplicationRecord
+    # Attributes os registration
     has_one_attached :avatar, dependent: :destroy
     has_secure_password
-    has_many :bids
-    has_many :messages
+    validates :email, presence: true ,uniqueness: true, format: {with: /\A[^@\s]+@[^@\s]+\z/, message: "must be valid email id" }
+    enum role:[:freelance, :client]
+
+    # Profile 
     has_one :profile, dependent: :destroy
     before_create :build_profile
     accepts_nested_attributes_for :profile
-    validates :email, presence: true ,uniqueness: true, format: {with: /\A[^@\s]+@[^@\s]+\z/, message: "must be valid email id" }
-    #validates :approved
-    enum role:[:freelance, :admin, :client]
 
+    #jobs
+    has_many :jobs, dependent: :destroy
+
+    # bids
+    has_many :bids, dependent: :destroy
+
+    #messages
+    has_many :messages
+
+    #notifications
+    has_many :notifications, as: :recipient, dependent: :destroy
+   
+    # some default value
     after_initialize( :set_default_role, {if: :new_record?})
 
     def set_default_role
         self.role ||=:freelance
     end
     
-    has_many :jobs, dependent: :destroy
     scope :all_except, ->(user) { where.not(id: user) }
     after_create_commit {broadcast_append_to "users"}
     after_commit :add_default_avatar, on: %i[create]
@@ -41,5 +53,10 @@ class User < ApplicationRecord
         )
     end
 
+    def User.digest(string)
+        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                      BCrypt::Engine.cost
+        BCrypt::Password.create(string, cost: cost)
+    end
 end
 

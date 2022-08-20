@@ -15,12 +15,16 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.json
   def show
+    @bids= @job.bids.order(created_at: :desc)
+    mark_notifications_as_read
   end
 
   def bid_show
     @jobs = Job.all.order("created_at desc")
     @bids =Bid.all.order("created_at desc")
     @user= Current.user
+
+    mark_status_notifications_as_read
   end
 
   def upload_show
@@ -96,4 +100,21 @@ class JobsController < ApplicationController
     def job_params
       params.require(:job).permit(:title, :description,  :location, :job_author, :apply_url, :avatar, :category_id)
     end
+
+    def mark_notifications_as_read
+      if Current.user
+        notifications_to_mark_as_read = @job.notifications_as_job.where(recipient: Current.user)
+        notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+      end
+    end
+
+    def mark_status_notifications_as_read
+      @bids.each do |bid|
+        if bid.user_id=Current.user.id
+          notifications_to_mark_as_read = bid.notifications_as_bid.where(recipient: Current.user)
+          notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+        end
+      end
+    end
+
 end

@@ -53,7 +53,7 @@
               <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
             </div>
 
-            <% if Current.user.admin? || job_author(job) %>
+            <% if job_author(job) %>
               <ul class="pv3">
                 <li class="inline-block">
                   <%= link_to 'View', job, class: 'button is-small is-link is-outlined' %></li>

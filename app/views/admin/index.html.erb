@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-6">
     <table class="table table-striped my-6">
         <thead>
             <tr>
@@ -7,6 +7,7 @@
                 <th scope="col"> Registration_Approval</th>
             </tr>
         </thead>
+        
         <tbody class="text-center">
         <% @user.each do |user|%>
             <tr>
@@ -16,4 +17,8 @@
         <%end%>
         </tbody>
     </table>
+    
+    <h1 class="mb-2"> To Manipulate categories click below:</h1>
+    <%= link_to "Show category", categories_path, class:" fw-bold" %>
 </div>
+<%= render 'shared/footer'%>

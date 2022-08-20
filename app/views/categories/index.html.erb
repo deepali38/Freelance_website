@@ -1,14 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-6">
+  <p style="color: green"><%= notice %></p>
 
-<h1>Categories</h1>
+  <h1 class="fs-4 fw-bold">Categories</h1>
+  <%= link_to "New category", new_category_path %>
 
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
+  <div id="categories">
+    <% @categories.each do |category| %>
+      <%= render category %>
+      <p>
+        <%= link_to "Show this category", category %>
+      </p>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New category", new_category_path %>

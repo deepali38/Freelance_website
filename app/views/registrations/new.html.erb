@@ -2,14 +2,12 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-4">
-
-          <h2 class="title is-2">Sign up</h2>
-            <%= form_with model: @user, url: sign_up_path do |f| %>
-            
+        <h2 class="title is-2">Sign up</h2>
+        <%= form_with model: @user, url: sign_up_path do |f| %>
           <div class="col-sm-4 "> 
             <div class="field">
               <div class="control">
-               <p>
+                <p>
                 <%= f.label 'Avatar' %><br>
                 <%= f.file_field :avatar %>
                 </p>
@@ -17,83 +15,83 @@
             </div>
           </div>
           
-
-            <div class="field">
-              <div class="control">
-                <p>
-                <%= f.label 'Name or Company Name' %><br>
-                <%= f.text_field :name_or_company_name %>
-                </p>
-              </div>
+          <div class="field">
+            <div class="control">
+              <p>
+              <%= f.label 'Name or Company Name' %><br>
+              <%= f.text_field :name_or_company_name %>
+              </p>
             </div>
+          </div>
 
-            <div class="field">
-              <div class="control">
-                <p>
-                <%= f.label 'email' %><br>
-                <%= f.text_field :email %>
-                </p>
-              </div>
+          <div class="field">
+            <div class="control">
+              <p>
+              <%= f.label 'email' %><br>
+              <%= f.text_field :email %>
+              </p>
             </div>
+          </div>
 
-            <div class="field">
-              <div class="control">
-                <p>
-                <%= f.label 'education' %><br>
-                <%= f.text_field :education %>
-                </p>
-              </div>
+          <div class="field">
+            <div class="control">
+              <p>
+              <%= f.label 'education' %><br>
+              <%= f.text_field :education %>
+              </p>
             </div>
+          </div>
 
-            <div class="field">
-              <div class="control">
-                <p>
-                <%= f.label 'experinece' %><br>
-                <%= f.text_field :experience %>
-                </p>
-              </div>
+          <div class="field">
+            <div class="control">
+              <p>
+              <%= f.label 'experinece' %><br>
+              <%= f.text_field :experience %>
+              </p>
             </div>
+          </div>
 
-            <div class="field">
-              <div class="control">
-                <p>
-                <%= f.label 'industry' %><br>
-                <%= f.text_field :industry %>
-                </p>
-              </div>
+          <div class="field">
+            <div class="control">
+              <p>
+              <%= f.label 'industry' %><br>
+              <%= f.text_field :industry %>
+              </p>
             </div>
+          </div>
 
-            <div class="field">
-              <div class="control">
-                <p>
-                <%= f.label 'Role' %><br>
-                <%= f.select :role, options_for_select(User.roles.map {|key, value| [key.titleize, User.roles.key(value)]}, @user.role)%>
-                </p>
-              </div>
+          <div class="field">
+            <div class="control">
+              <p>
+              <%= f.label 'Role' %><br>
+              <%= f.select :role, options_for_select(User.roles.map {|key, value| [key.titleize, User.roles.key(value)]}, @user.role)%>
+              </p>
             </div>
+          </div>
 
-            <div class="field">
-              <div class="control">
-                <p>
-                <%= f.label 'password' %><br>
-                <%= f.password_field :password %>
-                </p>
-              </div>
+          <div class="field">
+            <div class="control">
+              <p>
+              <%= f.label 'password' %><br>
+              <%= f.password_field :password %>
+              </p>
             </div>
+          </div>
 
-            <div class="field">
-              <div class="control">
-                <p>
-                <%= f.label 'password_confirmation' %><br>
-                <%= f.password_field :password_confirmation %>
-                </p>
-              </div>
+          <div class="field">
+            <div class="control">
+              <p>
+              <%= f.label 'password_confirmation' %><br>
+              <%= f.password_field :password_confirmation %>
+              </p>
             </div>
+          </div>
 
-            <p>
-            <%= f.submit 'Sign Up', class:"button is-primary is-medium" %>
-            </p>
-          <% end %>
+          <p>
+          <%= f.submit 'Sign Up', class:"button is-primary is-medium" %>
+          </p>
+
+        <% end %>
       </div>
 		</div>
 	</div>

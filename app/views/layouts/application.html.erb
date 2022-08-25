@@ -22,18 +22,19 @@
     <%= stylesheet_link_tag "application", media: "all","data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "notification", "data-turbolinks-track" => true  %>
   </head>
   <style>
-  <%= ".msg-#{Current.user&.id}" %> {
-  background-color: #007bff !important;
-  padding: 10px;
-  }
-  <%= ".cont-#{Current.user&.id}" %> {
-  display: flex;
-  justify-content: flex-end
-  }
+    <%= ".msg-#{Current.user&.id}" %> {
+    background-color: #007bff !important;
+    padding: 10px;
+    }
+    <%= ".cont-#{Current.user&.id}" %> {
+    display: flex;
+    justify-content: flex-end
+    }
+  </style>
 
-</style>
   <body class=" d-flex flex-column min-vh-100">
     <% if flash[:notice] %>
     	<div class="notification is-success global-notification">
@@ -46,93 +47,61 @@
         <%= alert %>
       </div>
     <% end %>
-  <header class="p-3 bg-dark text-white">
-  <div class="container text-white">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-        <span class="fs-4 text-white">Freelancer</span>
-      </a>
 
-      <!--<form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-2">
-        <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search">
-      </form>-->
-      <ul class="nav nav-pills">
-        <li>
-          <%=link_to "Home", root_path, class:"nav-item nav-link text-white"%>
-        </li>
+    <header class="p-3 bg-dark text-white">
+      <div class="container text-white">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <span class="fs-4 text-white">Freelancer</span>
+          </a>
 
-        <li>
-          <%=link_to "About", root_path, class:"nav-item nav-link text-white"%>
-        </li>
+          <ul class="nav nav-pills">
+            <li>
+              <%=link_to "Home", root_path, class:"nav-item nav-link text-white"%>
+            </li>
 
-        <li>
-          <%=link_to "Find jobs", jobs_board_url, class:"nav-item nav-link text-white"%>
-        </li>
+            <li>
+              <%=link_to "About", root_path, class:"nav-item nav-link text-white"%>
+            </li>
 
-        <li>
-          <%=link_to "Find freelancer", portfolio_path, class:"nav-item nav-link text-white"%>
-        </li>
-      
-        <% if Current.user && Current.user.client? && Current.user.approved?%>
-        
-          <li>
-              <%=link_to "Post Job", new_job_path, class:"job nav-item nav-link active mx-2"%>
-          </li>
+            <li>
+              <%=link_to "Find jobs", jobs_board_index_path, class:"nav-item nav-link text-white"%>
+            </li>
 
-          <li class=" mx-2 my-2">
-            <%= render 'layouts/notifications'%>
-            <%# <%= link_to '<i class="	fas fa-bell fa-lg"></i>'.html_safe, root_url, class:"sec counter counter"%>
-          </li>
+            <li>
+              <%=link_to "Find freelancer", portfolios_path, class:"nav-item nav-link text-white"%>
+            </li>
 
-          <li class=" mx-2 my-2">
-            <%= link_to '<i class="	far fa-comments
-              fa-lg"></i>'.html_safe, rooms_url, class:"sec counter counter"%>
-          </li>
+            <% if Current.user && Current.user.approved?%>
+              <li class=" mx-2 my-2">
+                <%= render 'layouts/notifications'%>
+              </li>
 
-         <%# <li>
-            <%= link_to rooms_path do %>
-             <%# <i class="	far fa-comments job nav-item nav-link active mx-2 my-1"></i>
+              <li class=" mx-2 my-2">
+                <%= link_to '<i class="	far fa-comments fa-lg"></i>'.html_safe, rooms_url, class:"sec counter counter"%>
+              </li>
+
+              <% if Current.user.client?%>
+                <li>
+                    <%=link_to "Post Job", new_job_path, class:"job nav-item nav-link active mx-2"%>
+                </li>
+              <% end %>
+
+              <%= render 'shared/navbar'%>
+            <% else %>
+              <li>
+                <%=link_to "login", sign_in_path, class:"job nav-item nav-link active"%>
+              </li>
+
+              <li>
+                <%=link_to "Sign-up", sign_up_path, class:"job nav-item nav-link active"%>
+              </li>
             <% end %>
-          <%# </li>  %>
-          
-          <%= render 'shared/navbar'%>
-        
-        <% elsif Current.user && Current.user.freelance? && Current.user.approved? %>
-
-          <li class=" mx-2 my-2">
-            <%= render 'layouts/notifications'%>
-          </li>
-          
-
-          <li class=" mx-2 my-2">
-            <%= link_to '<i class="	far fa-comments
-              fa-lg"></i>'.html_safe, rooms_url, class:"sec counter counter"%>
-          </li>
-
-          <%= render 'shared/navbar'%>
-
-
-        <% else %>
-          <li>
-            <%=link_to "login", sign_in_path, class:"job nav-item nav-link active"%>
-          </li>
-
-          <li>
-            <%=link_to "Sign-up", sign_up_path, class:"job nav-item nav-link active"%>
-          </li>
-        <% end %>
-      </ul>
-  </div>
-  </div>
-  </header>
+          </ul>
+        </div>
+      </div>
+    </header>
   
-  <%= yield %>
-  </body>
-  <script type="text/javascript">
-$(document).ready(function(){
-  setTimeout(function(){
-    $('.notification').remove();
-  }, 5000);
- })
-</script>
+    <%= yield %>
+    </body>
 </html>

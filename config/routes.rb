@@ -49,20 +49,26 @@ Rails.application.routes.draw do
     patch :reject
   end
   
-  get "jobs_board", to:"jobs_board#index"
-  get "portfolio", to:"portfolios#index"
+  # jobs_board (all the jobs listed)
+  resources :jobs_board
+
+  # portfolios (all the freelancers profiles listed)
+  resources :portfolios
+
+  # get "jobs_board", to:"jobs_board#index"
+  # get "portfolio", to:"portfolios#index"
+
   get 'rooms/index'
   resources :rooms
   resources :users
   resources :rooms do
     resources :messages
   end
+
   get "bids", to:"jobs#bid_show"
   get "files", to:"jobs#upload_show"
-  get "view", to:"profiles#view"
-  get "profiles", to: "profiles#show", as: :user_root_path
 
-  
-  
+  # get "view", to:"profiles#view"
+  # get "profiles", to: "profiles#show", as: :user_root_path
 end 
                   

@@ -1,58 +1,57 @@
 <div id="<%= dom_id profile %>">
   <p class="fs-4 mb-4">
-  <button type="button" class="btn btn-primary"><%= profile.category.name if profile.category %></button>
+    <button type="button" class="btn btn-primary"><%= profile.category.name if profile.category %></button>
   </p>
+
   <p>
     <strong class="fs-2">User:</strong>
     <br>
     <div class="mb-4 fs-4 user">
-    <%= profile.user.name_or_company_name%>
+      <%= profile.user.name_or_company_name%>
     </div>
   </p>
+
   <p>
     <strong class="fs-4">Description:</strong>
     <br>
     <div class="mb-4">
-    <%= profile.description%>
+      <%= profile.description%>
     </div>
   </p>
 
   <p>
     <strong class="fs-4">Is private:</strong>
     <div class="mb-4">
-    <%= profile.is_private %>
+      <%= profile.is_private %>
     </div>
   </p>
 
-<p class ="mb-2">
-  <strong class="fs-4"> Files</strong><br>
-  <div class="card-group mb-6">
-  <% if profile.files.attached? %>
-    <% profile.files.each do |attachment|%>
-      <div class="card" style="width: 18rem;">
-        <div class="card-img-top">
-            <% if attachment.image? %>
+  <p class ="mb-2">
+    <strong class="fs-4"> Files</strong><br>
+    <div class="card-group mb-6">
+      <% if profile.files.attached? %>
+        <% profile.files.each do |attachment|%>
+          <div class="card" style="width: 18rem;">
+            <div class="card-img-top">
+              <% if attachment.image? %>
                 <%= image_tag attachment, width: "200px" %>
-            <% elsif attachment.audio? %>
-                <audio controls>
-                  <source src="<%= rails_blob_url(attachment) %>" type="<%= attachment.content_type %>"/>
-                </audio>
-            <% elsif attachment.video? %>
+              <% elsif attachment.video? %>
                 <video controls width="480">
                   <source src="<%= rails_blob_url(attachment) %>" type="<%= attachment.content_type %>"/>
                 </video>
-            <% else %>
+              <% else %>
                 <%= link_to attachment.filename, rails_blob_path(attachment, disposition: "attachment") %>
-            <% end %>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted"><%= link_to "Delete attachment", purge_attachment_path(attachment), method: :delete, data: { confirm: 'Are you sure?' } %></small>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-  </div>
-</p>
+              <% end %>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"><%= link_to "Delete attachment", purge_attachment_path(attachment), method: :delete, data: { confirm: 'Are you sure?' } %></small>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </p>
+</div>
 
     
  

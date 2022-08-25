@@ -1,37 +1,24 @@
 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <div class="dropdown text-end">
-            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
-              <%= image_tag Current.user.avatar,class:"rounded-circle"%>
-            </a>
-            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-              <li>
-                <%=link_to Current.user.name_or_company_name, profiles_path, class:"dropdown-item"%>
-              </li>
-              <%if Current.user.isadmin? %>
-                <li>
-                  <%=link_to 'ADMIN',admin_index_path, class:"dropdown-item"%>
-                </li>
-              <%end%>
+  <div class="dropdown text-end">
+    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
+      <%= image_tag Current.user.avatar,class:"rounded-circle"%>
+    </a>
+    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+      <li><%=link_to Current.user.name_or_company_name, profiles_path, class:"dropdown-item"%></li>
 
-              <li>
-                <%=link_to 'Dashboard',jobs_url, class:"dropdown-item"%>
-              </li>
+      <%if Current.user.isadmin? %>
+        <li><%=link_to 'ADMIN',admin_index_path, class:"dropdown-item"%></li>
+      <%end%>
 
-              <li>
-                <%=link_to 'Settings',edit_path, class:"dropdown-item"%>
-              </li>
+      <li><%=link_to 'Dashboard',jobs_url, class:"dropdown-item"%></li>
 
-              <li>
-              <%= link_to 'Edit Password', edit_password_path, class:"dropdown-item"%>
-              </li>
+      <li><%=link_to 'Settings',edit_path, class:"dropdown-item"%></li>
 
-              <li>
-                <hr class="dropdown-divider">
-              </li>
+      <li><%= link_to 'Edit Password', edit_password_path, class:"dropdown-item"%></li>
 
-              <li>
-                <%= button_to 'Sign out', logout_path, method: :delete, class:"dropdown-item"%>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <li><hr class="dropdown-divider"></li>
+
+      <li><%= button_to 'Sign out', logout_path, method: :delete, class:"dropdown-item"%></li>
+    </ul>
+  </div>
+</div>

@@ -1,16 +1,12 @@
 <div class="container mt-6">
   <%= render @profile %>
-
   <div>
     <% if Current.user==@profile.user%>
-    <%= link_to "Edit this profile", edit_profile_path(@profile) %> 
-    <!--<%= link_to "Back to profiles", profiles_path %>-->
-    <%= button_to "Destroy this profile",@profile, method: :delete,class: " mt-4 button is-danger is-small is-rounded mv4"%><%end%>
-
+      <%= link_to "Edit this profile", edit_profile_path(@profile) %> 
+      <!--<%= link_to "Back to profiles", profiles_path %>-->
+      <%= button_to "Destroy this profile",@profile, method: :delete,class: " mt-4 button is-danger is-small is-rounded mv4"%>
+    <%end%>
   </div>
 </div>
-
-</div>
-
 
 <%= render 'shared/footer'%>

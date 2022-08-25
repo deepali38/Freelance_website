@@ -1,56 +1,55 @@
 <div class="container">
   <div class=" d-flex justify-content-end col-12 my-4">
-    <%= form_tag(portfolio_path, method: "get", remote: true) do %>
+    <%= form_tag(portfolios_path, method: "get", remote: true) do %>
       <%= collection_select :profile, :category_id, Category.all, :id, :name, prompt: true %>
-    
       <%= submit_tag "Search", class:'btn btn-dark '%>
     <%end%>
   </div>
-  <div class="column is-12 pl3 container">
+
+  <div class="column is-12 pl3">
     <% @profiles.each do |profile| %>
       <div class="columns border-bottom pt4">
-          <div class="column is-1">
-              <% if !profile.user.avatar.nil? %>
-                  <%= image_tag profile.user.avatar,class:"rounded-circle1 text-center"%>
-              <% end %>
+        <div class="column is-1">
+          <% if !profile.user.avatar.nil? %>
+            <%= image_tag profile.user.avatar,class:"rounded-circle1 text-center"%>
+          <% end %>
+        </div>
+
+        <div class="column is-8">
+          <h3 class="title is-4 index-title"><%= link_to profile.user.name_or_company_name, profile %></h3>
+          <p class="fs-4 mb-4">
+            <button type="button" class="btn btn-primary"><%= profile.category.name if profile.category %></button>
+          </p>
+
+          <div class="pv2 f6">
+            <%if profile.description.nil?%>
+              <%=sanitize(profile.description)%>
+            <%else%>
+              <%= sanitize(profile.description.truncate(200, separator: '</p>')) %>
+            <%end%>
           </div>
 
-          <div class="column is-8">
-              <h3 class="title is-4 index-title"><%= link_to profile.user.name_or_company_name, profile %></h3>
-
-              <p class="fs-4 mb-4">
-                <button type="button" class="btn btn-primary"><%= profile.category.name if profile.category %></button>
-              </p>
-
-
-              <div class="pv2 f6">
-                  <%if profile.description.nil?%>
-                            <%=sanitize(profile.description)%>
-                        <%else%>
-                        <%= sanitize(profile.description.truncate(200, separator: '</p>')) %>
-                        <%end%>
-              </div>
-
-        
-              <ul class="pv3">
+          <ul class="pv3">
+            <li class="inline-block">
+              <%= link_to 'View', profile, class: 'button is-small is-link is-outlined' %>
+            </li>
+            <% if Current.user==profile.user%>
               <li class="inline-block">
-                  <%= link_to 'View', profile, class: 'button is-small is-link is-outlined' %></li>
+                <%= link_to 'Edit', edit_profile_path(profile), class: 'button is-small is-link is-outlined' %>
+              </li>
               <li class="inline-block">
-              <% if Current.user==profile.user%>
-                  <%= link_to 'Edit', edit_profile_path(profile), class: 'button is-small is-link is-outlined' %></li>
-              <li class="inline-block">
-                  <%= link_to 'Delete post', profile_path(profile), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%></li>
-              <% end %>
-              </ul>
-        
-
+                <%= link_to 'Delete post', profile_path(profile), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%>
+              </li>
+            <% end %>
+          </ul>
         </div>
+
         <div class="column has-text-right">
           <p class="pt2 f6"></p>
         </div>
       </div>
     <% end %>
-    
   </div>
 </div>
+
 <%= render 'shared/footer'%>

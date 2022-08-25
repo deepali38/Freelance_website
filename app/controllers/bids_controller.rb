@@ -1,6 +1,7 @@
 class BidsController < ApplicationController
   before_action :get_job, except: [:accept, :reject]
   before_action :authenticate_with_http_digest, except: [:index, :show]
+  
     def index
         
     end

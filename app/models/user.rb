@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
     # Profile 
     has_one :profile, dependent: :destroy
-    before_create :build_profile
-    accepts_nested_attributes_for :profile
+    # before_create :build_profile
+    # accepts_nested_attributes_for :profile
 
     #jobs
     has_many :jobs, dependent: :destroy
@@ -29,8 +29,11 @@ class User < ApplicationRecord
         self.role ||=:freelance
     end
     
+    # for messages
     scope :all_except, ->(user) { where.not(id: user) }
     after_create_commit {broadcast_append_to "users"}
+
+    # default pic of user
     after_commit :add_default_avatar, on: %i[create]
 
     def chat_avatar 
@@ -53,6 +56,7 @@ class User < ApplicationRecord
         )
     end
 
+    # for seeds
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                       BCrypt::Engine.cost

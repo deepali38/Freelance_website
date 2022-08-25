@@ -6,8 +6,9 @@
   </a>
 
   <h1 class="mt-3 mb-4"><%=Current.user.name_or_company_name%></h1>
-  
- <%= link_to "Edit this profile", edit_profile_path(Current.user.profile) %> 
+  <% unless Current.user.profile.nil?%>
+    <%= link_to "Edit this profile", edit_profile_url(Current.user.profile) %>
+  <% end %> 
  
   <div class="card text-center mb-6" style="background-color: #eee;">
     <div class="card-body">

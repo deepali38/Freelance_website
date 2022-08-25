@@ -1,54 +1,58 @@
 <div class="container">
   <div class=" d-flex justify-content-end col-12 my-4">
-  <%= form_tag(jobs_board_path, method: "get", remote: true) do %>
-        <%= collection_select :job, :category_id, Category.all, :id, :name, prompt: true %>
-      
-        <%= submit_tag "Search", class:'btn btn-dark '%>
-  <%end%>
+    <%= form_tag(jobs_board_index_path, method: "get", remote: true) do %>
+      <%= collection_select :job, :category_id, Category.all, :id, :name, prompt: true %>
+      <%= submit_tag "Search", class:'btn btn-dark '%>
+    <%end%>
   </div>
 
-
-<div class="column is-12 pl3">
-  <% @jobs.each do |job| %>
-    <div class="columns border-bottom pt4">
-     <div class="column is-1">
-        <% if !job.avatar.file.nil? %>
-          <%= link_to image_tag(job.avatar_url(:thumb), alt: job.job_author, class: "has-text-centered")%>
-        <% end %>
-      </div>
-    <div class="column is-8">
-      <h3 class="title is-4 index-title"><%= link_to job.title, job %></h3>
-        <ul>
-          <li><%= link_to job.job_author %></li>
-        </ul>
-      <div class="pv2 f6">
-        <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
-      </div>
-
-      
-        <ul class="pv3">
-          <li class="inline-block">
-            <%= link_to 'View', job, class: 'button is-small is-link is-outlined' %></li>
-          <li class="inline-block">
-          <% if job_author(job) %>
-            <%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %></li>
-          <li class="inline-block">
-            <%= link_to 'Delete post', job_path(job), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%></li>
+  <div class="column is-12 pl3">
+    <% @jobs.each do |job| %>
+      <div class="columns border-bottom pt4">
+        <div class="column is-1">
+          <% if !job.avatar.file.nil? %>
+            <%= link_to image_tag(job.avatar_url(:thumb), alt: job.job_author, class: "has-text-centered")%>
           <% end %>
-        </ul>
-      
+        </div>
+        
+        <div class="column is-8">
+          <h3 class="title is-4 index-title"><%= link_to job.title, job %></h3>
 
-      </div>
-      <div class="column has-text-right">
-         <button type="button" class="btn btn-primary btn-sm"><%= job.category.name if job.category %></button>
-        <p class="pt2 f6"><%= job.location %></p>
+          <ul>
+            <li><%= link_to job.job_author %></li>
+          </ul>
+
+          <div class="pv2 f6">
+            <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
+          </div>
+
+          <ul class="pv3">
+            <li class="inline-block">
+              <%= link_to 'View', job, class: 'button is-small is-link is-outlined' %>
+            </li>
+
+            <% if job_author(job) %>
+              <li class="inline-block">
+                  <%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %>
+              </li>
+
+              <li class="inline-block">
+                <%= link_to 'Delete post', job_path(job), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      
+        <div class="column has-text-right">
+          <button type="button" class="btn btn-primary btn-sm"><%= job.category.name if job.category %></button>
+          <p class="pt2 f6"><%= job.location %></p>
           <% if Current.user && Current.user.freelance?%>
-              <button type="button" class="btn btn-danger btn-md button-disable"><%= link_to 'BID',new_job_bid_path(job), class:'bid'%></button>
+            <button type="button" class="btn btn-danger btn-md button-disable"><%= link_to 'BID',new_job_bid_path(job), class:'bid'%></button>
           <%end%>
+        </div>
       </div>
-    </div>
-  <% end %>
-  
+    <% end %>
+  </div>
 </div>
-</div>
+
 <%= render 'shared/footer'%>

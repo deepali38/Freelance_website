@@ -12,7 +12,6 @@
                     <%= link_to notification.to_notification.message, notification.to_notification.url%>
                 </li>
             <% end %>
-
             <% if @read.count > 0 && @unread.count > 0 %>
                 <li>
                     <hr class="dropdown-divider">
@@ -22,7 +21,6 @@
                     No notifications yet.
                 </li>
             <% end %>
-
             <% @read.each do |notification| %>
                 <li class="dropdown-item">
                     <%= link_to notification.to_notification.message, notification.to_notification.url%>

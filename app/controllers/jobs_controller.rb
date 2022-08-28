@@ -6,10 +6,9 @@ class JobsController < ApplicationController
 
   # GET /jobs or /jobs.json
   def index
-      @jobs = Job.all.order("created_at desc")
-      @user= Current.user
-      @bids=Bid.all.order("created_at desc")
-    
+    @jobs = Job.all.order("created_at desc")
+    @user= Current.user
+    @bids=Bid.all.order("created_at desc")
   end
 
   # GET /jobs/1
@@ -32,6 +31,7 @@ class JobsController < ApplicationController
     @bids =Bid.all.order("created_at desc")
     @user= Current.user
   end
+
   # GET /jobs/new
   def new
     @job = Current.user.jobs.build
@@ -45,7 +45,6 @@ class JobsController < ApplicationController
   # POST /jobs.json
   def create
     @job = Current.user.jobs.build(job_params)
-
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Your job listing was purchased successfully!' }
@@ -79,24 +78,34 @@ class JobsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to jobs_url, status: :see_other, notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
-
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def check_job
+      if !Job.exists?(params[:id])
+        redirect_to jobs_path, alert: 'JOB DOES NOT EXISTS'
+      end
+    end
+
     def set_job
       @job = Current.user.jobs.find(params[:id])
     end
 
     def set
-      @job = Job.find(params[:id])
+      if !Job.exists?(params[:id])
+        redirect_to jobs_path, alert: 'JOB DOES NOT EXISTS'
+      else
+        @job = Job.find(params[:id])
+      end
     end
 
     def set_categories
       @categories= Category.all.order(:name)
     end
     # Never trust parameters from the scary internet, only allow the white list through.
+
     def job_params
       params.require(:job).permit(:title, :description,  :location, :job_author, :apply_url, :avatar, :category_id)
     end
@@ -116,5 +125,4 @@ class JobsController < ApplicationController
         end
       end
     end
-
 end

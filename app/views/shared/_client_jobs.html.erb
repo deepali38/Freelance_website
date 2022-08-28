@@ -1,0 +1,43 @@
+<p class="my-6"> Total No. of Bids on all the jobs: 
+  <span class="float-right btn btn-success"><%= @user.jobs.count%></span>
+</p>
+
+<div class="column pl3">
+  <% @jobs.each do |job| %>
+    <% if job.user == Current.user %>
+      <div class="columns border-bottom pt4">
+        <div class="column is-1">
+          <% if !job.avatar.file.nil? %>
+            <%= link_to image_tag(job.avatar_url(:thumb), alt: job.job_author, class: "has-text-centered")%>
+          <% end %>
+        </div>
+        
+        <div class="column is-8">
+          <h3 class="title is-4 index-title"><%= link_to job.title, job %> <span class="fs-10"> <%= job.location %></span></h3>
+          <ul>
+            <li><%= link_to job.job_author %></li>
+          </ul>
+
+          <div class="pv2 f6">
+            <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
+          </div>
+
+          <% if job_author(job) %>
+            <ul class="pv3">
+              <li class="inline-block"><%= link_to 'View', job, class: 'button is-small is-link is-outlined' %></li>
+              <li class="inline-block"><%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %></li>
+              <li class="inline-block"><%= button_to 'Delete post',job, method: :delete,class: "button is-danger is-small is-rounded mv4"%></li>
+            </ul>
+          <% end %>
+        </div>
+
+        <div class="column has-text-right">
+          <button type="button" class="btn btn-dark my-4"><%= job.category.name if job.category %></button>
+          <P>
+            Total No. of Bids:<span class="bid-button"> <%= link_to job.bids.count, bids_path%>
+          </p>
+        </div>
+      </div>
+    <%end%>
+  <% end %>
+</div>

@@ -43,9 +43,6 @@
                 <%= link_to attachment.filename, rails_blob_path(attachment, disposition: "attachment") %>
               <% end %>
             </div>
-            <div class="card-footer">
-              <small class="text-muted"><%= link_to "Delete attachment", purge_attachment_path(attachment), method: :delete, data: { confirm: 'Are you sure?' } %></small>
-            </div>
           </div>
         <% end %>
       <% end %>

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  
+  before_action :check_user
   def show
     @user = User.find(params[:id])
+
     @current_user = Current.user
     @rooms = Room.public_rooms
     @users = User.all_except(@current_user)
@@ -16,8 +17,15 @@ class UsersController < ApplicationController
 
   
   private
+
   def get_name(user1, user2)
     users = [user1, user2].sort
     "private_#{users[0].id}_#{users[1].id}"
+  end
+
+  def check_user
+    if !User.exists?(params[:id])
+      redirect_to root_path, alert: 'User does not exists'
+    end
   end
 end

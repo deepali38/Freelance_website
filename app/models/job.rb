@@ -6,6 +6,9 @@ class Job < ApplicationRecord
     validates :category_id, presence: true
     belongs_to :category, dependent: :destroy
     validates :description, presence: true, length: {minimum:225}
+    validates :location, presence: true
+    validates :job_author, presence: true
+    validates :title, presence: true
     has_noticed_notifications model_name: 'Notification'
     has_many :notifications, through: :user, dependent: :destroy
     def self.search(search)

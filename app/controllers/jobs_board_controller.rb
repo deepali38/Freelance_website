@@ -2,7 +2,7 @@ class JobsBoardController < ApplicationController
     
     def index
         if params[:job] and params[:job][:category_id]
-            @jobs=Job.search(params[:job][:category_id])
+          @jobs=Job.search(params[:job][:category_id])
         else
           @jobs = Job.all.order("created_at desc")
           @bids =Bid.all.order("created_at desc")

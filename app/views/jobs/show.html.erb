@@ -1,15 +1,11 @@
 <div class="columns pt4 pb7">
   <div class="column is-7 is-offset-1">
-
     <p class="f7"><i class="fa fa-clock"></i> Posted <%= time_ago_in_words(@job.created_at) %> ago</p>
     <h1 class="title is-2"><%= @job.title %></h1>
-
 
     <div class="content text-serif f4">
       <%= @job.description.html_safe %>
     </div>
-
-    <%# <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-large is-fullwidth is-link" %>
 
     <% if Current.user && Current.user.client? && Current.user.approved? %>
       <section class="combid">
@@ -28,19 +24,18 @@
                     </thead>
                     <tbody>
                       <tr class="candidates-list">
-
                         <td class="candidate-list-favourite-time text-center">
                           <div class="candidate-list-details">
                             <div class="candidate-list-info">
                               <div class="candidate-list-title fs-4">
                                 <%= link_to bid.user.name_or_company_name, bid.user.profile %>
                               </div>
-                              </div>
+                            </div>
                           </div>
                         </td>
 
                         <td class="candidate-list-favourite-time text-center">
-                            <span class="candidate-list-time order-1"><%= bid.amount %> </span>
+                          <span class="candidate-list-time order-1"><%= bid.amount %> </span>
                         </td>
 
                         <td class="candidate-list-favourite-time text-center">
@@ -59,23 +54,17 @@
   </div>
 
   <div class="column is-2 is-offset-1 has-text-centered">
-
     <% if !@job.avatar.file.nil? %>
       <%= link_to image_tag(@job.avatar_url(:thumb), alt: @job.job_author, class: "has-text-centered")%>
     <% end %>
 
     <h5 class="is-5 has-text-centered"><%= link_to @job.job_author%></h5>
 
-
-    <%# <%= link_to 'Apply to this job', bids_path, class:"button is-rounded is-fullwidth is-link" %>
     <% if Current.user.try(:admin) || job_author(@job) %>
       <ul class="pv3">
-        <li class="pv1 inline-block">
-          <%= link_to 'View', @job, class: 'button is-small is-link is-outlined' %></li>
-        <li class="pv1 inline-block">
-          <%= link_to 'Edit', edit_job_path(@job), class: 'button is-small is-link is-outlined' %></li>
-        <li class="pv1 inline-block pos">
-          <%= button_to 'Delete post',@job, method: :delete,class: " button is-danger is-small is-round "%></li>
+        <li class="pv1 inline-block"><%= link_to 'View', @job, class: 'button is-small is-link is-outlined' %></li>
+        <li class="pv1 inline-block"><%= link_to 'Edit', edit_job_path(@job), class: 'button is-small is-link is-outlined' %></li>
+        <li class="pv1 inline-block pos"><%= button_to 'Delete post',@job, method: :delete,class: " button is-danger is-small is-round "%></li>
       </ul>
     <% end %>
   </div>

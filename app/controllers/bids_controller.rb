@@ -13,9 +13,9 @@ class BidsController < ApplicationController
         @bid = @job.bids.build(bid_params)
         @bid.user_id=Current.user.id
         if @bid.save
-        redirect_to jobs_board_path, notice: 'Successfully made a bid, Congratulations!'
+        redirect_to jobs_board_index_path, notice: 'Successfully made a bid, Congratulations!'
         else
-          redirect_to jobs_board_path, alert: ' You cant make a new bid since you have already made a bid'
+          redirect_to jobs_board_index_path, alert: ' You cant make a new bid since you have already made a bid'
         end
     end
 

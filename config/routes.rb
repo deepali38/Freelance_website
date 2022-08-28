@@ -30,16 +30,13 @@ Rails.application.routes.draw do
   #categories
   resources :categories
 
-  # Profile page of user
+  # Profile page of user 
   resources :profiles
 
   # jobs + nested bids
   resources :jobs do
     resources :bids
   end
-
-  get "attachments/:id/purge", to: "attachments#purge"
-  delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 
   # Accepting and rejecting a bid
   resources :bids, only:[] do
@@ -55,20 +52,18 @@ Rails.application.routes.draw do
   # portfolios (all the freelancers profiles listed)
   resources :portfolios
 
-  # get "jobs_board", to:"jobs_board#index"
-  # get "portfolio", to:"portfolios#index"
-
+  # chat
   get 'rooms/index'
-  resources :rooms
-  resources :users
+  # resources :rooms
   resources :rooms do
     resources :messages
   end
 
+  # users
+  resources :users
+  
+  # user-defined methods for dashboard 
   get "bids", to:"jobs#bid_show"
   get "files", to:"jobs#upload_show"
-
-  # get "view", to:"profiles#view"
-  # get "profiles", to: "profiles#show", as: :user_root_path
 end 
                   

@@ -1,0 +1,26 @@
+<p class="my-6"> Total No. of jobs applied: 
+  <span class="float-right btn btn-success"><%= @user.bids.count%></span>
+</p>
+
+<div class="column pl3">
+  <% @bids.each do |bid| %>
+    <% if bid.user == Current.user %>
+      <div class="columns border-bottom pt4">
+        <div class="column is-8">
+          <h3 class="title is-4 index-title"><%= link_to bid.job.title%> <span class="fs-10"> <%= bid.job.location %></span></h3>
+          <ul>
+            <li><%= link_to bid.job.job_author %></li>
+          </ul>
+
+          <div class="pv2 f6">
+            <%= sanitize(bid.job.description.truncate(200, separator: '</p>')) %>
+          </div>
+        </div>
+
+        <div class="column has-text-right">
+          <button type="button" class="btn btn-dark my-4"><%= bid.job.category.name if bid.job.category %></button>
+        </div>
+      </div>
+    <%end%>
+  <% end %>
+</div>

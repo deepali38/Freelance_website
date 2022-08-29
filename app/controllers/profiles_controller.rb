@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_with_http_digest
+  before_action :require_user_logged_in!
   before_action :set_profile, only: %i[edit update destroy ]
   before_action :set, only: %i[show]
   before_action :set_categories
@@ -21,12 +22,6 @@ class ProfilesController < ApplicationController
       
     end
   end
-
-  # def view
-  #   @profiles=Profile.all
-  #   @profile= Profile.find(params[:id])
-  #   @current_user = Current.user
-  # end
 
   # GET /profiles/1/edit
   def edit
@@ -70,20 +65,20 @@ class ProfilesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @profile = Current.user.profile
-    end
-      
-    def set
-      @profile = Profile.find(params[:id])
-    end
-
-    def set_categories
-      @categories= Category.all.order(:name)
-    end
+  def set_profile
+    @profile = Current.user.profile
+  end
     
-    # Only allow a list of trusted parameters through.
-    def profile_params
-      params.require(:profile).permit(:description, :is_private,:category_id, files: [])
-    end
+  def set
+    @profile = Profile.find(params[:id])
+  end
+
+  def set_categories
+    @categories= Category.all.order(:name)
+  end
+  
+  # Only allow a list of trusted parameters through.
+  def profile_params
+    params.require(:profile).permit(:description, :is_private,:category_id, files: [])
+  end
 end

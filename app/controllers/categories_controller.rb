@@ -61,7 +61,11 @@ class CategoriesController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_category
-    @category = Category.find(params[:id])
+    if !Category.exists?(params[:id])
+      redirect_to admin_index_path, alert: 'Category does not exists'
+    else
+      @category = Category.find(params[:id])
+    end
   end
 
   # Only allow a list of trusted parameters through.
@@ -71,6 +75,5 @@ class CategoriesController < ApplicationController
 
   def admin
     redirect_to root_path, alert: 'You are Not an admin' unless Current.user.isadmin?
-    #redirects to previous page
   end
 end

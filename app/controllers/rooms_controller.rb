@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
   before_action :authenticate_with_http_digest
+  before_action :require_user_logged_in!
+  
   def index
     @current_user = Current.user
     redirect_to 'sign_in_path' unless @current_user

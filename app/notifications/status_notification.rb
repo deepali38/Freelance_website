@@ -25,6 +25,6 @@ class StatusNotification < Noticed::Base
   end
   #
   def url
-    bids_path
+    jobs_path
   end
 end

@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   resources :users
   
   # user-defined methods for dashboard 
-  get "bids", to:"jobs#bid_show"
+  # get "bids", to:"jobs#bid_show"
   get "files", to:"jobs#upload_show"
 end 
                   

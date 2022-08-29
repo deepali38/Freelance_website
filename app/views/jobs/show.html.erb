@@ -20,6 +20,7 @@
                         <th class="text-center">Candidate Name</th>
                         <th class="text-center">Amount</th>
                         <th class="action text-center">Status</th>
+                        <th class="action text-center">Approval/Rejection</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -40,6 +41,9 @@
 
                         <td class="candidate-list-favourite-time text-center">
                             <span class="candidate-list-time order-1"><%= bid.status %></span>
+                        </td>
+                        <td class="candidate-list-favourite-time text-center">
+                            <span class="candidate-list-time order-1"><%= button_to "Accept", bid_accept_path(bid), method: :patch, class:'btn btn-success my-2' %><%= button_to "Reject", bid_reject_path(bid), method: :patch,class:'btn btn-danger my-2' %></span>
                         </td>
                       </tr>
                     </tbody>

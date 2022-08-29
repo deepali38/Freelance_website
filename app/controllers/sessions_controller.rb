@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       
       # sets up user.id sessions
       session[:user_id] = user.id
-      redirect_to jobs_path, notice: 'Logged in successfully'
+      redirect_to root_path, notice: 'Logged in successfully'
     else
       redirect_to sign_in_path, alert: 'Invalid Credentials'
     end

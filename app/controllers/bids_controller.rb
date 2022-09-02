@@ -4,6 +4,11 @@ class BidsController < ApplicationController
   before_action :get_job, except: [:accept, :reject, :index]
   before_action :find_bid, only: [:accept, :reject]
 
+  def index
+    @jobs=Current.user.jobs.joins(:bids).where(bids: {status: "Accepted"})
+    @bids=Current.user.bids.all.order(updated_at: :desc)
+  end
+  
   def new
     @bid = @job.bids.build
   end

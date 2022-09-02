@@ -1,14 +1,17 @@
 body {
   overflow: hidden;
 }
+
 .button .is-primary{
     border-color: none;
     color:black;
   }
+
 .rounded-circle{
   height: 30px!important;
   width: 30px
 }
+
 a{
   text-decoration: none;
 
@@ -16,34 +19,39 @@ a{
 .job{
   margin-right: 1rem;
 }
+
 .name{
   font-size: 25px!important;
 }
+
 .bg-dark{
   background-color: rgb(24, 49, 49)!important;
 }
+
 .active{
  background-color: #ffeb3b!important;
  color: black!important;
 }
+
 .col{
   padding:.5rem;
   background-color:rgb(211, 207, 207)!important;
   text-align: center;
 }
+
 .bg-image{
   background-size: cover;
   background-position: center;
 }
+
 .color{
   color:#183131;
 }
-/*body{
-  background-color: rgb(232, 233, 168)!important;
-}*/
+
 .fa-envelope{
   color: white;
 }
+
 .Text{
   color:blue;
 }
@@ -51,6 +59,7 @@ a{
 .users{
   color:#183131;
 }
+
 .msg-form {
   width: 100%;
   height: 56px;
@@ -62,15 +71,17 @@ a{
 }
 
 #messages {
-  height: calc(95vh - 150px);
+  height: calc(90vh - 150px);
   overflow-x: hidden;
   overflow-y: scroll;
 }
+
 #room_container {
   height: 90vh;
   margin-right: 0px !important;
   background-color: beige;
 }
+
 #side_panel {
   height: calc(95vh - 55px);
   margin-right: 0px !important;
@@ -78,6 +89,7 @@ a{
   overflow-y: scroll;
   margin-bottom: 0px;
 }
+
 #chatroom_container {
   margin: auto !important;
   overflow-x: hidden;
@@ -89,6 +101,7 @@ a{
   width: 100%;
   margin-right: 5px;
 }
+
 .message-box {
   word-wrap: break-word;
   width: fit-content;
@@ -105,6 +118,10 @@ a{
   border-bottom: 1px solid #555555;
 }
 
+.current_username {
+  overflow: hidden;
+  color: green !important;
+}
 .username {
   overflow: hidden;
 }
@@ -115,11 +132,15 @@ a{
   border-radius: 50%;
   margin-right: 10px;
 }
+
 .chat_pfp1 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
+}
+hr{
+  background-color: #343a40 !important;
 }
 .user_list_item {
   height: 55px;
@@ -137,12 +158,14 @@ a{
   margin-top: 15px;
   padding-bottom: 0px;
   margin-bottom: 0px;
+  font-size: 16px !important;
 }
 .time {
   padding-top: 0px;
   margin-top: 0px;
   padding-bottom: 0px;
   margin-bottom: 0px;
+  font-size: 12px !important;
 }
 .icon-container {
   width: 50px;
@@ -177,6 +200,7 @@ a{
 .card{
   margin: 10px;
   padding: 5px;
+  height:100%;
 }
 .select:not(.is-multiple):not(.is-loading)::after{
   display:none !important;
@@ -186,11 +210,10 @@ a{
   padding: 5px !important;
 }
 .image{
-  height: 250px;
-  padding: 30px;
+  height: 50%;
+  width: 100%;
 }
 .image img{
-  width:50px;
   height: 20px;
   object-fit: cover;
 }
@@ -394,3 +417,4 @@ body{
 .user-dashboard-info-box .candidates-list .thumb {
   margin-right: 20px;
 }
+

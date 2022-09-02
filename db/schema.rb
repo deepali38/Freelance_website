@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_20_081649) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_081105) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -114,6 +114,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_081649) do
     t.boolean "is_private", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "upload_files", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.integer "bid_id", null: false
+    t.string "description", null: false
   end
 
   create_table "users", force: :cascade do |t|

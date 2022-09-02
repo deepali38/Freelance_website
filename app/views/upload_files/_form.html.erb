@@ -1,0 +1,26 @@
+<%= simple_form_for [bid, upload_file] do |f| %>
+  <%= f.error_notification %>
+
+  <div class="columns">
+    <div class="field column">
+      <div class="field">
+        <div class="control">
+          <%= f.input :description, required: true, input_html: { class: "textarea" }, wrapper: false, label_html: { class: "label" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="field column">
+      <div class="control">
+        <label class="label">Files Upload</label>
+        <div class="file">
+          <%= f.file_field :files, multiple: true, direct_upload: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= f.button :submit, class: "button is-primary is-small is-rounded mv4" %>
+<% end %>

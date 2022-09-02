@@ -52,8 +52,6 @@ Rails.application.routes.draw do
   # portfolios (all the freelancers profiles listed)
   resources :portfolios
 
-  # chat
-  get 'rooms/index'
   # resources :rooms
   resources :rooms do
     resources :messages
@@ -61,9 +59,10 @@ Rails.application.routes.draw do
 
   # users
   resources :users
-  
-  # user-defined methods for dashboard 
-  # get "bids", to:"jobs#bid_show"
-  get "files", to:"jobs#upload_show"
+
+  # File upload for accepted bid
+  resources :bids do
+    resources :upload_files
+  end
 end 
                   

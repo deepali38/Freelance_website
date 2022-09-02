@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    # Attributes os registration
+    # Attributes on registration
     has_one_attached :avatar, dependent: :destroy
     has_secure_password
     validates :email, presence: true ,uniqueness: true, format: {with: /\A[^@\s]+@[^@\s]+\z/, message: "must be valid email id" }
@@ -7,14 +7,15 @@ class User < ApplicationRecord
 
     # Profile 
     has_one :profile, dependent: :destroy
-    # before_create :build_profile
-    # accepts_nested_attributes_for :profile
 
     #jobs
     has_many :jobs, dependent: :destroy
 
     # bids
     has_many :bids, dependent: :destroy
+
+    #upload
+    has_many :upload_files, dependent: :destroy
 
     #messages
     has_many :messages

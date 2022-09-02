@@ -9,6 +9,9 @@ class Bid < ApplicationRecord
   before_destroy :cleanup_notifications
   has_noticed_notifications model_name: 'Notification'
   has_many :notifications, through: :user, dependent: :destroy
+
+  #upload
+  has_many :upload_files, dependent: :destroy
   
   private
 

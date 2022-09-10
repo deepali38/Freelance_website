@@ -23,12 +23,6 @@ class JobsController < ApplicationController
     mark_notifications_as_read
   end
 
-  def upload_show
-    @jobs = Job.all.order('created_at desc')
-    @bids = Bid.all.order('created_at desc')
-    @user = Current.user
-  end
-
   # GET /jobs/new
   def new
     @job = Current.user.jobs.build
@@ -108,11 +102,13 @@ class JobsController < ApplicationController
   end
 
   def mark_status_notifications_as_read
-    @bids =Bid.all.order("created_at desc")
-    @bids.each do |bid|
-      if bid.user_id=Current.user.id
-        notifications_to_mark_as_read = bid.notifications_as_bid.where(recipient: Current.user)
-        notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+    if Current.user.freelance?
+      @bids =Bid.all.order("created_at desc")
+      @bids.each do |bid|
+        if bid.user_id=Current.user.id
+          notifications_to_mark_as_read = bid.notifications_as_bid.where(recipient: Current.user)
+          notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+        end
       end
     end
   end

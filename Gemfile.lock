@@ -362,7 +362,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails (~> 4.5)
   mini_magick (~> 4.11)
-  noticed (~> 1.5)
+  noticed (~> 1.5, >= 1.5.9)
   puma (~> 5.0)
   rails (~> 7.0.3)
   redis (~> 4.0)

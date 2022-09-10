@@ -13,6 +13,7 @@ class Job < ApplicationRecord
   validates :title, presence: true
   has_noticed_notifications model_name: 'Notification'
   has_many :notifications, through: :user, dependent: :destroy
+  
   def search(search)
     where('category_id LIKE?', "%#{search}")
   end

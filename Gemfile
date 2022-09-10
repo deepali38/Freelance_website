@@ -22,7 +22,7 @@ gem 'jbuilder'
 
 gem 'jquery-rails', '~> 4.5'
 gem 'mini_magick', '~> 4.11'
-gem 'noticed', '~> 1.5'
+gem 'noticed', '~> 1.5', '>= 1.5.9'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'

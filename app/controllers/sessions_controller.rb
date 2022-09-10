@@ -1,8 +1,8 @@
-class SessionsController < ApplicationController
+# frozen_string_literal: true
 
-  #new
-  def new;
-  end
+class SessionsController < ApplicationController
+  # new
+  def new; end
 
   # sign-in/log-in
   def create
@@ -20,5 +20,4 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path, notice: 'Logged Out'
   end
-
 end

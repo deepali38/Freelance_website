@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
   before_action :authenticate_with_http_digest
   before_action :require_user_logged_in!
-  
+
   def index
     @current_user = Current.user
     redirect_to 'sign_in_path' unless @current_user
@@ -11,7 +13,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create(name: params["room"]["name"])
+    @room = Room.create(name: params['room']['name'])
     redirect_to @room
   end
 
@@ -25,5 +27,4 @@ class RoomsController < ApplicationController
     @messages = @single_room.messages
     render 'index'
   end
-
 end

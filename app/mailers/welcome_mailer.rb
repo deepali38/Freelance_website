@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class WelcomeMailer < ApplicationMailer
-    # sends a welcome email
-    def welcome_email
-      @user = params[:user]
-      @url = 'http://localhost:3000/sign_in'
-      mail(to: @user.email, subject: 'Welcome to my awesome tutorial')
-    end
+  # sends a welcome email
+  def welcome_email
+    @user = params[:user]
+    @url = 'http://localhost:3000/sign_in'
+    mail(to: @user.email, subject: 'Welcome to my awesome tutorial')
+  end
 end

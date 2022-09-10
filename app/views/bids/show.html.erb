@@ -1,0 +1,19 @@
+<div class="column pl3 container my-5">
+  <div class="card">
+    <div class="card-img-top">
+      <% if @bid.document.image? %>
+        <%= image_tag @bid.document%>
+      <% elsif @bid.document.video? %>
+        <video controls width="480">
+          <source src="<%= rails_blob_url(@bid.document) %>" type="<%= @bid.document.content_type %>"/>
+        </video>
+      <% else %>
+        <%= link_to @bid.document.filename, rails_blob_path(@bid.document, disposition: "attachment") %>
+      <% end %>
+    </div>
+  </div>
+  <% if Current.user.freelance?%>
+    <%= link_to "Edit Upload", edit_job_bid_path(@bid.job.id, @bid.id),class: "button is-primary is-small is-rounded mv4" %>
+  <% end %>
+  <%= link_to "Back", documents_path, class: "button is-dark is-small is-rounded mv4" %>
+</div>

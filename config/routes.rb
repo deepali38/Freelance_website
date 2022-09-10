@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root to:"post#index"
-  
+  root to: 'post#index'
+
   # user sign-up and sign-in
-  get "sign_up", to:"registrations#new"
+  get 'sign_up', to: 'registrations#new'
   post 'sign_up', to: 'registrations#create'
-  get "edit", to:"registration_edit#edit"
-  patch 'edit', to: 'registration_edit#update'
+  get 'edit', to: 'registrations#edit'
+  patch 'edit', to: 'registrations#update'
   get 'sign_in', to: 'sessions#new'
   post 'sign_in', to: 'sessions#create', as: 'log_in'
   delete 'logout', to: 'sessions#destroy'
@@ -22,15 +24,15 @@ Rails.application.routes.draw do
 
   # admin + accepting user registration via admin approval
   resources :admin
-  resources :admin, only:[] do
+  resources :admin, only: [] do
     patch :accept
     get :accept
   end
 
-  #categories
+  # categories
   resources :categories
 
-  # Profile page of user 
+  # Profile page of user
   resources :profiles
 
   # jobs + nested bids
@@ -39,13 +41,16 @@ Rails.application.routes.draw do
   end
 
   # Accepting and rejecting a bid
-  resources :bids, only:[] do
+  resources :bids, only: [] do
     patch :accept
     get :accept
     get :reject
     patch :reject
   end
-  
+
+  #Documents
+  resources :documents
+
   # jobs_board (all the jobs listed)
   resources :jobs_board
 
@@ -59,10 +64,4 @@ Rails.application.routes.draw do
 
   # users
   resources :users
-
-  # File upload for accepted bid
-  resources :bids do
-    resources :upload_files
-  end
-end 
-                  
+end

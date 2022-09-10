@@ -25,6 +25,6 @@ class BidNotification < Noticed::Base
   end
   #
   def url
-  job_path(Job.find(params[:bid][:job_id]))
+    job_path(Job.find(params[:bid][:job_id]))
   end
 end

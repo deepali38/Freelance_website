@@ -1,39 +1,41 @@
+# frozen_string_literal: true
+
 class JobsController < ApplicationController
-  before_action :set_job, only: %i[ edit update destroy ]
+  before_action :set_job, only: %i[edit update destroy]
   before_action :set, only: %i[show]
-  before_action :authenticate_with_http_digest, except: [:index, :show]
-  before_action :require_user_logged_in!,except: [:mark_notifications_as_read,:mark_status_notifications_as_read,:show]
+  before_action :authenticate_with_http_digest, except: %i[index show]
+  before_action :require_user_logged_in!,
+                except: %i[mark_notifications_as_read mark_status_notifications_as_read show]
   before_action :set_categories
 
   # GET /jobs or /jobs.json
   def index
-    @jobs = Job.all.order("created_at desc")
-    @user= Current.user
-    @bids=Bid.all.order("created_at desc")
+    @jobs = Job.all.order('created_at desc')
+    @user = Current.user
+    @bids = Bid.all.order('created_at desc')
     mark_status_notifications_as_read
   end
 
   # GET /jobs/1
   # GET /jobs/1.json
   def show
-    @bids= @job.bids.order(created_at: :desc)
+    @bids = @job.bids.order(created_at: :desc)
     mark_notifications_as_read
   end
 
   def upload_show
-    @jobs = Job.all.order("created_at desc")
-    @bids =Bid.all.order("created_at desc")
-    @user= Current.user
+    @jobs = Job.all.order('created_at desc')
+    @bids = Bid.all.order('created_at desc')
+    @user = Current.user
   end
 
   # GET /jobs/new
   def new
     @job = Current.user.jobs.build
   end
- 
+
   # GET /jobs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /jobs
   # POST /jobs.json
@@ -48,7 +50,6 @@ class JobsController < ApplicationController
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # PATCH/PUT /jobs/1
@@ -76,6 +77,7 @@ class JobsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_job
     @job = Current.user.jobs.find(params[:id])
@@ -90,12 +92,12 @@ class JobsController < ApplicationController
   end
 
   def set_categories
-    @categories= Category.all.order(:name)
+    @categories = Category.all.order(:name)
   end
   # Never trust parameters from the scary internet, only allow the white list through.
 
   def job_params
-    params.require(:job).permit(:title, :description,  :location, :job_author, :apply_url, :avatar, :category_id)
+    params.require(:job).permit(:title, :description, :location, :job_author, :apply_url, :avatar, :category_id)
   end
 
   def mark_notifications_as_read

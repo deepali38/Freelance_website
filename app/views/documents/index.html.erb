@@ -9,37 +9,32 @@
 
   <% if Current.user.freelance?%>
     <% @bids.each do |bid| %>
-      <% if bid.status=="Accepted"%>
-        <div class="columns border-bottom pt4">
-          <div class="column is-8">
-            <h3 class="title is-4 index-title"><%= link_to bid.job.title%> <span class="fs-10"> <%= bid.job.location %></span></h3>
-            <ul>
-              <li>Category: <%= bid.job.category.name if bid.job.category %></li>
+      <div class="columns border-bottom pt4">
+        <div class="column is-8">
+          <h3 class="title is-4 index-title"><%= link_to bid.job.title%> <span class="fs-10"> <%= bid.job.location %></span></h3>
+          <ul>
+            <li>Category: <%= bid.job.category.name if bid.job.category %></li>
 
-              <li><%= link_to bid.job.job_author %></li>
-            </ul>
+            <li><%= link_to bid.job.job_author %></li>
+          </ul>
 
-            <div class="pv2 f6">
-              <%= sanitize(bid.job.description.truncate(200, separator: '</p>')) %>
-            </div>
-          </div>
-
-          <div class="column has-text-right">
-            Status: <button type="button" class="btn btn-success btn-sm my-2"><%= bid.status%></button><br>
-            Amount: <button type="button" class="btn btn-dark btn-sm">$<%= bid.amount%>/month</button><br>
-
-            <%if bid.upload_files.exists?%>
-              <% bid.upload_files.each do |file|%>
-              <%= link_to "Show Document", bid_upload_file_path(bid,file) %>
-              <%end%>
-            <% else %>
-              <%= link_to "File Upload", new_bid_upload_file_path(bid) %>
-            <% end %>
+          <div class="pv2 f6">
+            <%= sanitize(bid.job.description.truncate(200, separator: '</p>')) %>
           </div>
         </div>
-      <%end%>
+
+        <div class="column has-text-right">
+          Status: <button type="button" class="btn btn-success btn-sm my-2"><%= bid.status%></button><br>
+          Amount: <button type="button" class="btn btn-dark btn-sm">$<%= bid.amount%>/month</button><br>
+          <% if bid.document.attached?  %>
+            <%= link_to "Show Document",job_bid_path(bid.job.id, bid.id), class:"button is-dark is-small mt-2" %>
+          <% else %>
+            <%= link_to "File Upload", edit_job_bid_path(bid.job.id, bid.id), class:"button is-primary is-small mt-2"%>
+          <% end %>
+        </div>
+      </div>
     <%end%>
-  <%else%>
+  <%elsif Current.user.client?%>
     <% @jobs.each do |f| %>
       <% f.bids.each do |bid|%>
          <div class="columns border-bottom pt4">
@@ -58,15 +53,12 @@
           <div class="column has-text-right">
             Status: <button type="button" class="btn btn-success btn-sm my-2"><%= bid.status%></button><br>
             Amount: <button type="button" class="btn btn-dark btn-sm">$<%= bid.amount%>/month</button><br>
-
-            <% bid.upload_files.each do |file|%>
-              <%= link_to "Show Document", bid_upload_file_path(bid,file) %>
-            <%end%>
+            <% if bid.document.attached?  %>
+            <%= link_to "Show Document",job_bid_path(bid.job.id, bid.id), class:"button is-dark is-small mt-2"%>
+          <% end %>
           </div>
         </div>
       <%end%>
     <%end%>
   <%end%>
 </div>
-
-

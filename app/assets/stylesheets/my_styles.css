@@ -200,7 +200,6 @@ hr{
 .card{
   margin: 10px;
   padding: 5px;
-  height:100%;
 }
 .select:not(.is-multiple):not(.is-loading)::after{
   display:none !important;
@@ -416,5 +415,9 @@ body{
 
 .user-dashboard-info-box .candidates-list .thumb {
   margin-right: 20px;
+}
+
+.card-img-top{
+  height:300px;
 }
 

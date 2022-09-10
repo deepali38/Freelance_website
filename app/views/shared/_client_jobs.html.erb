@@ -34,7 +34,7 @@
         <div class="column has-text-right">
           <button type="button" class="btn btn-dark my-4"><%= job.category.name if job.category %></button>
           <P>
-            Total No. of Bids:<span class="bid-button"> <%= link_to job.bids.count, job_bids_path(job)%>
+            Total No. of Bids:<span class="bid-button"> <%= link_to job.bids.count%>
           </p>
         </div>
       </div>

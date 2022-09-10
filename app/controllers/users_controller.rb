@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :require_user_logged_in!
   before_action :check_user
@@ -12,9 +14,9 @@ class UsersController < ApplicationController
     @room_name = get_name(@user, @current_user)
     @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, @current_user], @room_name)
     @messages = @single_room.messages
-    render "rooms/index"
+    render 'rooms/index'
   end
-  
+
   private
 
   def get_name(user1, user2)
@@ -23,8 +25,6 @@ class UsersController < ApplicationController
   end
 
   def check_user
-    if !User.exists?(params[:id])
-      redirect_to root_path, alert: 'User does not exists'
-    end
+    redirect_to root_path, alert: 'User does not exists' unless User.exists?(params[:id])
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include SessionsHelper
   helper_method :require_user_logged_in!, :set_current_user
@@ -12,4 +14,5 @@ class ApplicationController < ActionController::Base
     @unread =notification.unread
     @read =notification.read
   end
+
 end

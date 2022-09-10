@@ -47,7 +47,9 @@
           <button type="button" class="btn btn-primary btn-sm"><%= job.category.name if job.category %></button>
           <p class="pt2 f6"><%= job.location %></p>
           <% if Current.user && Current.user.freelance?%>
+            <% if Current.user.bid.exist?%>
             <button type="button" class="btn btn-danger btn-md button-disable"><%= link_to 'BID',new_job_bid_path(job), class:'bid'%></button>
+            <%end%>
           <%end%>
         </div>
       </div>

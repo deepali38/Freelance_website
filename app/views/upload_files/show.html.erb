@@ -1,0 +1,45 @@
+<div class="column pl3 container my-5">
+  <div class="column pl3">  
+      <h3 class="title is-4 index-title"> Decription</h3>
+
+      <div class="pv2 f5">
+        <%= @upload_file.description %>
+      </div>
+
+      <p class ="mb-2">
+        <strong class="fs-4"> Files</strong><br>
+        <div class="card-group mb-6">
+          <% if @upload_file.files.attached? %>
+            <% @upload_file.files.each do |attachment|%>
+              <div class="card">
+                <div class="card">
+                  <% if attachment.image? %>
+                    <%= image_tag attachment, class:"picture" %>
+                  <% elsif attachment.video? %>
+                    <video controls width="480">
+                      <source src="<%= rails_blob_url(attachment) %>" type="<%= attachment.content_type %>"/>
+                    </video>
+                  <% else %>
+                    <%= link_to attachment.filename, rails_blob_path(attachment, disposition: "attachment") %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p> No files uploaded <p>
+          <% end %>
+        </div>
+      </p>
+     
+      <% if Current.user.freelance?%>
+        <%= link_to "Edit this upload @upload_file", edit_bid_upload_file_path(@upload_file.bid, @upload_file),class: 'button is-small is-link is-outlined my-4' %> 
+
+        <%= button_to "Destroy this upload @upload_file", [@upload_file.bid, @upload_file], method: :delete,class: "button is-danger is-small is-rounded mv4" %>
+
+      <% end %>
+  </div>
+</div>
+
+
+
+

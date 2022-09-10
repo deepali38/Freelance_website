@@ -23,6 +23,7 @@
           </div>
         </div>
 
+<<<<<<< HEAD:app/views/documents/index.html.erb
         <div class="column has-text-right">
           Status: <button type="button" class="btn btn-success btn-sm my-2"><%= bid.status%></button><br>
           Amount: <button type="button" class="btn btn-dark btn-sm">$<%= bid.amount%>/month</button><br>
@@ -31,6 +32,18 @@
           <% else %>
             <%= link_to "File Upload", edit_job_bid_path(bid.job.id, bid.id), class:"button is-primary is-small mt-2"%>
           <% end %>
+=======
+          <div class="column has-text-right">
+            Status: <button type="button" class="btn btn-success btn-sm my-2"><%= bid.status%></button><br>
+            Amount: <button type="button" class="btn btn-dark btn-sm">$<%= bid.amount%>/month</button><br>
+
+            <%if bid.upload_file.nil?%>
+              <%= link_to "File Upload", new_bid_upload_file_path(bid) %>
+            <% else %>
+              <%= link_to "Show Document", bid_upload_file_path(bid,bid.upload_file) %>
+            <% end %>
+          </div>
+>>>>>>> cd1bc9ccdb085d49f2728aa758cd9da3897e9ce4:app/views/bids/index.html.erb
         </div>
       </div>
     <%end%>
@@ -39,7 +52,7 @@
       <% f.bids.each do |bid|%>
          <div class="columns border-bottom pt4">
           <div class="column is-8">
-            <h3 class="title is-4 index-title"><%= link_to bid.user.name_or_company_name%> <span class="fs-10"> <%= bid.user.profile.category.name%></span> </h3>
+            <h3 class="title is-4 index-title"><%= link_to bid.user.name_or_company_name%> <span class="fs-10"> <%= bid.user.profile.category%></span> </h3>
             <h6 class="title is-4 index-title fs-6"><%= link_to bid.job.title%> <span class="fs-10"> <%= bid.job.location %></span></h6>
             <ul>
               <li><%= link_to bid.job.job_author %></li>
@@ -53,9 +66,15 @@
           <div class="column has-text-right">
             Status: <button type="button" class="btn btn-success btn-sm my-2"><%= bid.status%></button><br>
             Amount: <button type="button" class="btn btn-dark btn-sm">$<%= bid.amount%>/month</button><br>
+<<<<<<< HEAD:app/views/documents/index.html.erb
             <% if bid.document.attached?  %>
             <%= link_to "Show Document",job_bid_path(bid.job.id, bid.id), class:"button is-dark is-small mt-2"%>
           <% end %>
+=======
+
+              <%# <%= link_to "Show Document", bid_upload_file_path(bid, bid.upload_file) %>
+            
+>>>>>>> cd1bc9ccdb085d49f2728aa758cd9da3897e9ce4:app/views/bids/index.html.erb
           </div>
         </div>
       <%end%>

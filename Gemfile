@@ -14,6 +14,7 @@ gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
 
+<<<<<<< HEAD
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
 
@@ -24,6 +25,8 @@ gem 'jquery-rails', '~> 4.5'
 gem 'mini_magick', '~> 4.11'
 gem 'noticed', '~> 1.5'
 
+=======
+>>>>>>> cd1bc9ccdb085d49f2728aa758cd9da3897e9ce4
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
@@ -61,7 +64,14 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+<<<<<<< HEAD
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+=======
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+  # Use sqlite3 as the database for Active Record
+  gem "sqlite3", "~> 1.4"
+>>>>>>> cd1bc9ccdb085d49f2728aa758cd9da3897e9ce4
 end
 
 group :development do
@@ -86,4 +96,15 @@ group :test do
   gem 'webdrivers'
 end
 
+<<<<<<< HEAD
 ruby '2.7.1'
+=======
+group :production do
+  gem 'pg', '~> 1.4', '>= 1.4.3'
+end
+
+gem 'bcrypt', '~> 3.1', '>= 3.1.18'
+gem "noticed", "~> 1.5"
+
+gem "pagy", "~> 5.10"
+>>>>>>> cd1bc9ccdb085d49f2728aa758cd9da3897e9ce4

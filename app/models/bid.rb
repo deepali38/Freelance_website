@@ -12,6 +12,12 @@ class Bid < ApplicationRecord
   
   has_many :notifications, through: :user, dependent: :destroy
 
+<<<<<<< HEAD
+=======
+  #upload
+  has_one :upload_file, dependent: :destroy
+  
+>>>>>>> cd1bc9ccdb085d49f2728aa758cd9da3897e9ce4
   private
 
   def notify_recipient

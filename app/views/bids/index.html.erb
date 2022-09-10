@@ -28,12 +28,10 @@
             Status: <button type="button" class="btn btn-success btn-sm my-2"><%= bid.status%></button><br>
             Amount: <button type="button" class="btn btn-dark btn-sm">$<%= bid.amount%>/month</button><br>
 
-            <%if bid.upload_files.exists?%>
-              <% bid.upload_files.each do |file|%>
-              <%= link_to "Show Document", bid_upload_file_path(bid,file) %>
-              <%end%>
-            <% else %>
+            <%if bid.upload_file.nil?%>
               <%= link_to "File Upload", new_bid_upload_file_path(bid) %>
+            <% else %>
+              <%= link_to "Show Document", bid_upload_file_path(bid,bid.upload_file) %>
             <% end %>
           </div>
         </div>
@@ -44,7 +42,7 @@
       <% f.bids.each do |bid|%>
          <div class="columns border-bottom pt4">
           <div class="column is-8">
-            <h3 class="title is-4 index-title"><%= link_to bid.user.name_or_company_name%> <span class="fs-10"> <%= bid.user.profile.category.name%></span> </h3>
+            <h3 class="title is-4 index-title"><%= link_to bid.user.name_or_company_name%> <span class="fs-10"> <%= bid.user.profile.category%></span> </h3>
             <h6 class="title is-4 index-title fs-6"><%= link_to bid.job.title%> <span class="fs-10"> <%= bid.job.location %></span></h6>
             <ul>
               <li><%= link_to bid.job.job_author %></li>
@@ -59,9 +57,8 @@
             Status: <button type="button" class="btn btn-success btn-sm my-2"><%= bid.status%></button><br>
             Amount: <button type="button" class="btn btn-dark btn-sm">$<%= bid.amount%>/month</button><br>
 
-            <% bid.upload_files.each do |file|%>
-              <%= link_to "Show Document", bid_upload_file_path(bid,file) %>
-            <%end%>
+              <%# <%= link_to "Show Document", bid_upload_file_path(bid, bid.upload_file) %>
+            
           </div>
         </div>
       <%end%>

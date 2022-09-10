@@ -11,7 +11,7 @@ class Bid < ApplicationRecord
   has_many :notifications, through: :user, dependent: :destroy
 
   #upload
-  has_many :upload_files, dependent: :destroy
+  has_one :upload_file, dependent: :destroy
   
   private
 

@@ -1,17 +1,16 @@
 <div class="column pl3 container my-5">
   <div class="column pl3">  
-    <% @upload_files.each do |file|%>
       <h3 class="title is-4 index-title"> Decription</h3>
 
       <div class="pv2 f5">
-        <%= file.description %>
+        <%= @upload_file.description %>
       </div>
 
       <p class ="mb-2">
         <strong class="fs-4"> Files</strong><br>
         <div class="card-group mb-6">
-          <% if file.files.attached? %>
-            <% file.files.each do |attachment|%>
+          <% if @upload_file.files.attached? %>
+            <% @upload_file.files.each do |attachment|%>
               <div class="card">
                 <div class="card">
                   <% if attachment.image? %>
@@ -33,12 +32,11 @@
       </p>
      
       <% if Current.user.freelance?%>
-        <%= link_to "Edit this upload file", edit_bid_upload_file_path(file.bid, file),class: 'button is-small is-link is-outlined my-4' %> 
+        <%= link_to "Edit this upload @upload_file", edit_bid_upload_file_path(@upload_file.bid, @upload_file),class: 'button is-small is-link is-outlined my-4' %> 
 
-        <%= button_to "Destroy this upload file", [file.bid, file], method: :delete,class: "button is-danger is-small is-rounded mv4" %>
+        <%= button_to "Destroy this upload @upload_file", [@upload_file.bid, @upload_file], method: :delete,class: "button is-danger is-small is-rounded mv4" %>
 
       <% end %>
-    <%end%>
   </div>
 </div>
 

@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column is-8 is-offset-2">
         <h1 class="title is-3">Upload the file</h1>
-        <%= render "form", bid: @bid, upload_file: @bid.upload_files.build %>
+        <%= render "form", bid: @bid, upload_file: @bid.build_upload_file %>
       </div>
     </div>
   </div>

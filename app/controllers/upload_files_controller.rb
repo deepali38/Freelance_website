@@ -10,7 +10,7 @@ class UploadFilesController < ApplicationController
 
   # GET /upload_files/1 or /upload_files/1.json
   def show
-    @upload_files=@bid.upload_files
+    @upload_file = UploadFile.find(params[:id])
   end
 
   # GET /upload_files/new
@@ -23,10 +23,10 @@ class UploadFilesController < ApplicationController
 
   # POST /upload_files or /upload_files.json
   def create
-    @upload_file = @bid.upload_files.build(upload_file_params)
+    @upload_file = @bid.build_upload_file(upload_file_params)
     @upload_file.user_id=Current.user.id
     if @upload_file.save
-      redirect_to bids_path, notice: " successfully uploaded"
+      redirect_to bid_upload_file_path(@bid,@upload_file), notice: " successfully uploaded"
     else
       redirect_to bids_path, alert: 'You have already made a upload'
     end 
@@ -34,7 +34,6 @@ class UploadFilesController < ApplicationController
 
   # PATCH/PUT /upload_files/1 or /upload_files/1.json
   def update
-    @upload_file=@bid.upload_files.find(params[:id])
     respond_to do |format|
       if @upload_file.update(upload_file_params)
         format.html { redirect_to bid_upload_file_path(@upload_file), notice: "Upload file was successfully updated." }
@@ -58,7 +57,7 @@ class UploadFilesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_upload_file
       @bid=Bid.find(params[:bid_id])
-      @upload_file = UploadFile.find(params[:id])
+      @upload_file = @bid.upload_file
     end
 
     def get_bid 

@@ -4,6 +4,17 @@
       <div class="column is-4">
         <h4 class="title is-2">Editing Credentials</h4>
         <%= form_with model: Current.user, url: edit_path do |f| %>
+          <div class="col-sm-4 "> 
+            <div class="field">
+              <div class="control">
+                <p>
+                <%= f.label 'Avatar' %><br>
+                <%= f.file_field :avatar %>
+                </p>
+              </div>
+            </div>
+          </div>
+          
           <div class="field">
             <div class="control">
               <p>

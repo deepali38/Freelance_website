@@ -5,7 +5,7 @@
 <% end %>
 <li class="list-group-item d-flex align-items-center justify-content-between user_list_item <%= isActive %>">
   <div>
-    <%= link_to image_tag(user.chat_avatar, class: 'chat_pfp1'), user %>
+    <%= link_to image_tag(user.avatar, class: 'chat_pfp1'), user %>
   </div>
   <%= link_to user.name_or_company_name, user, class:'ms-2 me-auto username', data: {turbo: "false"}%>
 </li>
